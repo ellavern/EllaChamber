@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hoblit CDJR: 7 Day Creative Insights Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0F0F0F;
+    --card: #181818;
+    --card-border: #2A2A2A;
+    --white: #FFFFFF;
+    --dim: #AAAAAA;
+    --dim-2: #7A7A7A;
+    --yellow: #FFB22E;
+    --yellow-dark: #ED9702;
+    --purple: #9F6FFF;
+    --purple-dark: #432481;
+    --blue: #64DCFF;
+    --blue-dark: #00B3DC;
+    --positive: #BAE86C;
+    --negative: #FF6D6D;
+    --font-display: "Barlow", sans-serif;
+    --font-body: "Public Sans", sans-serif;
+    --radius-s: 8px;
+    --radius-m: 12px;
+    --radius-l: 18px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--white);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2 { font-family: var(--font-display); font-weight: 900; }
+  .page { max-width: 860px; margin: 0 auto; padding: 44px 24px 60px; }
+  .section { margin-bottom: 40px; }
+
+  /* Pixel checker motif */
+  .pixel-cluster { position: absolute; display: grid; gap: 5px; }
+  .pixel { width: 12px; height: 12px; }
+  .pixel.y1 { background: var(--yellow); }
+  .pixel.y2 { background: var(--yellow-dark); }
+  .pixel.p1 { background: var(--purple); }
+  .pixel.p2 { background: var(--purple-dark); }
+  .pixel.b1 { background: var(--blue); }
+  .pixel.b2 { background: var(--blue-dark); }
+
+  /* Password gate */
+  #gate {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 24px;
+  }
+  .gate-box {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-l);
+    padding: 44px 38px; max-width: 380px; width: 100%; text-align: center; position: relative;
+  }
+  .gate-mark { width: 14px; height: 14px; background: var(--yellow); margin: 0 auto 16px; }
+  .gate-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+  .gate-box h1 { font-size: 26px; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 8px; }
+  .gate-sub { color: var(--dim); font-size: 13px; margin-bottom: 24px; }
+  .gate-box input {
+    width: 100%; padding: 13px 14px; border-radius: var(--radius-s);
+    border: 1px solid var(--card-border); background: var(--bg); color: var(--white);
+    font-size: 14px; margin-bottom: 12px; font-family: var(--font-body); text-align: center;
+  }
+  .gate-box input::placeholder { color: var(--dim-2); }
+  .gate-box input:focus { outline: none; border-color: var(--yellow); }
+  .gate-box button {
+    width: 100%; padding: 13px 14px; border-radius: var(--radius-s);
+    border: none; background: var(--yellow); color: var(--bg); font-size: 13px;
+    font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase;
+    font-family: var(--font-body); cursor: pointer;
+  }
+  .gate-box button:hover { background: var(--yellow-dark); }
+  .gate-error { color: var(--negative); font-size: 12px; margin-top: 12px; display: none; }
+
+  #content { display: none; }
+
+  /* Header */
+  .header { position: relative; padding-bottom: 28px; border-bottom: 1px solid var(--card-border); margin-bottom: 32px; overflow: hidden; }
+  .header-logo { display: flex; align-items: center; gap: 8px; margin-bottom: 26px; }
+  .logo-mark { width: 16px; height: 16px; border: 2px solid var(--white); position: relative; }
+  .logo-mark::after { content: ""; position: absolute; top: 3px; left: 3px; width: 6px; height: 8px; background: var(--bg); }
+  .logo-word { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }
+  .header-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; }
+  .header h1 { font-size: 34px; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 10px; }
+  .header-meta { color: var(--dim); font-size: 13px; }
+
+  /* Section label bar */
+  .section-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+  .section-bar .sq { width: 11px; height: 11px; flex-shrink: 0; }
+  .section-bar .label { font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--dim); }
+  .section-bar .rule { flex: 1; height: 1px; background: var(--card-border); }
+
+  /* Verdict */
+  .verdict {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-l);
+    padding: 28px 30px; margin-bottom: 28px;
+  }
+  .verdict-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--yellow); margin-bottom: 10px; }
+  .verdict-title { font-size: 20px; font-weight: 700; margin-bottom: 10px; line-height: 27px; font-family: var(--font-display); }
+  .verdict-body { color: var(--dim); font-size: 13.5px; line-height: 20px; }
+
+  /* Stat grid */
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 28px; }
+  .stat-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-m); padding: 20px 14px; text-align: center; }
+  .stat-value { font-family: var(--font-display); font-size: 26px; font-weight: 900; color: var(--white); }
+  .stat-label { font-size: 10.5px; color: var(--dim); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* Working / fixing rows */
+  .row-list { display: flex; flex-direction: column; gap: 14px; }
+  .row-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-m); overflow: hidden; display: flex; gap: 16px; padding: 16px; align-items: center; }
+  .row-thumb-wrap { position: relative; flex-shrink: 0; width: 128px; height: 128px; border-radius: var(--radius-s); overflow: hidden; background: #222; }
+  .row-thumb { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(1.05) contrast(1.03); }
+  .row-format { position: absolute; bottom: 6px; left: 6px; font-size: 9px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 6px; border-radius: 100px; background: rgba(15,15,15,0.75); color: var(--white); }
+  .row-body { flex: 1; min-width: 0; }
+  .row-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap; }
+  .row-name { font-size: 13.5px; font-weight: 700; }
+  .row-meta { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+  .row-ctr { font-family: var(--font-display); font-size: 14px; font-weight: 900; color: var(--positive); }
+  .pill { display: inline-flex; align-items: center; font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+  .pill-yellow { background: rgba(255,178,46,0.15); color: var(--yellow); }
+  .pill-blue { background: rgba(100,220,255,0.15); color: var(--blue); }
+  .pill-purple { background: rgba(159,111,255,0.15); color: var(--purple); }
+  .row-why { font-size: 12.5px; color: var(--dim); line-height: 18px; }
+
+  /* Fix callout */
+  .fix-card { background: var(--card); border: 1px solid var(--card-border); border-left: 3px solid var(--blue); border-radius: var(--radius-m); padding: 20px 24px; }
+  .fix-card p { font-size: 13.5px; color: var(--dim); line-height: 20px; }
+  .fix-card strong { color: var(--white); }
+
+  /* New this week */
+  .new-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .new-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-m); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .new-icon { width: 34px; height: 34px; background: var(--yellow); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .new-title { font-size: 14px; font-weight: 700; font-family: var(--font-display); text-transform: uppercase; letter-spacing: -0.005em; }
+  .new-body { font-size: 12.5px; color: var(--dim); line-height: 18px; }
+  .new-why { font-size: 12.5px; color: var(--dim); line-height: 18px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+  .new-why strong { color: var(--yellow); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .new-status { display: inline-flex; align-self: flex-start; font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 100px; }
+
+  /* Learnings */
+  .learn-list { display: flex; flex-direction: column; gap: 12px; }
+  .learn-card { background: var(--card); border: 1px solid var(--card-border); border-left: 3px solid var(--purple); border-radius: var(--radius-m); padding: 18px 22px; display: flex; gap: 16px; }
+  .learn-num { font-family: var(--font-display); font-size: 20px; font-weight: 900; color: var(--purple); flex-shrink: 0; width: 28px; }
+  .learn-title { font-size: 13.5px; font-weight: 700; margin-bottom: 4px; }
+  .learn-body { font-size: 12.5px; color: var(--dim); line-height: 19px; }
+
+  .footer { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; color: var(--dim-2); font-size: 11.5px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--card-border); }
+
+  @media (max-width: 640px) {
+    .new-grid, .stat-grid { grid-template-columns: 1fr; }
+    .page { padding: 28px 16px 44px; }
+    .header h1 { font-size: 26px; }
+    .row-card { flex-direction: column; align-items: stretch; }
+    .row-thumb-wrap { width: 100%; height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Password gate -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-mark"></div>
+    <div class="gate-eyebrow">Client Report</div>
+    <h1>Hoblit CDJR</h1>
+    <p class="gate-sub">Enter the password to view your 7 Day Creative Insights Report.</p>
+    <input type="password" id="gate-input" placeholder="Password" autocomplete="off" />
+    <button onclick="checkPassword()">View Report</button>
+    <p class="gate-error" id="gate-error">Incorrect password. Please try again.</p>
+  </div>
+</div>
+
+<!-- Report content -->
+<div id="content">
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-logo">
+      <div class="logo-mark"></div>
+      <div class="logo-word">Chamber Media</div>
+    </div>
+    <div class="header-eyebrow">7 Day Creative Insights Report</div>
+    <h1>Hoblit CDJR</h1>
+    <div class="header-meta">July 7 to 13, 2026 &nbsp;·&nbsp; Meta Ads</div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="verdict">
+    <div class="verdict-label">Bottom Line</div>
+    <div class="verdict-title">Yes, the ads are working, and we know why.</div>
+    <div class="verdict-body">Video creative is earning nearly double the engagement of static images this week. That single insight is shaping everything we're building next, from the new formats below to the assets we're phasing out.</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-value">327K</div><div class="stat-label">People Reached</div></div>
+    <div class="stat-card"><div class="stat-value">10,554</div><div class="stat-label">Clicks to Site</div></div>
+    <div class="stat-card"><div class="stat-value">3.23%</div><div class="stat-label">Click Rate</div></div>
+    <div class="stat-card"><div class="stat-value">$0.16</div><div class="stat-label">Cost Per Click</div></div>
+  </div>
+
+  <!-- What's Working -->
+  <div class="section">
+    <div class="section-bar"><div class="sq" style="background:var(--yellow)"></div><span class="label">What's Working</span><div class="rule"></div></div>
+    <div class="row-list">
+
+      <div class="row-card">
+        <div class="row-thumb-wrap">
+          <img class="row-thumb" src="https://motionaccountassets.blob.core.windows.net/699cbdf0f67eadcc18c5b970/adunit/6a39a38e606d3ff1640f082a/thumbnail/32a1c370-5dcf-4d51-a970-c363425b92ff.jpg" loading="lazy" alt="Signing Papers" />
+          <span class="row-format">Video</span>
+        </div>
+        <div class="row-body">
+          <div class="row-top"><div class="row-name">Signing Papers Video</div><div class="row-meta"><span class="pill pill-yellow">Top Pick</span><span class="row-ctr">5.73%</span></div></div>
+          <p class="row-why">Real customers closing real deals at the dealership. This proof moment builds trust and is our steadiest performer, so we're building more scenes like it.</p>
+        </div>
+      </div>
+
+      <div class="row-card">
+        <div class="row-thumb-wrap">
+          <img class="row-thumb" src="https://motionaccountassets.blob.core.windows.net/699cbdf0f67eadcc18c5b970/adunit/699ccd3dd7b54bd21a6bb11c/thumbnail/a2bc5463-e430-4545-a06b-39d564d54f03.png" loading="lazy" alt="Pre-Owned Ford" />
+          <span class="row-format">Image</span>
+        </div>
+        <div class="row-body">
+          <div class="row-top"><div class="row-name">Pre-Owned Ford</div><div class="row-meta"><span class="pill pill-yellow">Breakout Signal</span><span class="row-ctr">7.92%</span></div></div>
+          <p class="row-why">Strong buyer interest on very little spend. We're building a video version so we can test this at real scale.</p>
+        </div>
+      </div>
+
+      <div class="row-card">
+        <div class="row-thumb-wrap">
+          <img class="row-thumb" src="https://motionaccountassets.blob.core.windows.net/699cbdf0f67eadcc18c5b970/adunit/6a39a38e606d3ff1640f085d/thumbnail/7df87e64-9bd3-40ed-aa3a-2267f5e69e70.jpg" loading="lazy" alt="White Work Truck" />
+          <span class="row-format">Video</span>
+        </div>
+        <div class="row-body">
+          <div class="row-top"><div class="row-name">White Work Truck</div><div class="row-meta"><span class="pill pill-yellow">High Intent</span><span class="row-ctr">13.28%</span></div></div>
+          <p class="row-why">Best click rate in the account with a warm audience. We're testing it with new, cold audiences to see if it holds up.</p>
+        </div>
+      </div>
+
+      <div class="row-card">
+        <div class="row-thumb-wrap">
+          <img class="row-thumb" src="https://motionaccountassets.blob.core.windows.net/699cbdf0f67eadcc18c5b970/adunit/6a39a38e606d3ff1640f07ee/thumbnail/131d3579-47cf-487d-902e-d32bd93b7079.jpg" loading="lazy" alt="Red Jeep" />
+          <span class="row-format">Video</span>
+        </div>
+        <div class="row-body">
+          <div class="row-top"><div class="row-name">Red Jeep, Seasonal</div><div class="row-meta"><span class="pill pill-yellow">Best Reach</span><span class="row-ctr">3.94%</span></div></div>
+          <p class="row-why">Our widest-reaching video this week, still holding a strong click rate at scale. A strong candidate for an evergreen follow-up once the seasonal push ends.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- What We're Fixing -->
+  <div class="section">
+    <div class="section-bar"><div class="sq" style="background:var(--blue)"></div><span class="label">What We're Fixing</span><div class="rule"></div></div>
+    <div class="fix-card">
+      <p><strong>Two pre-owned static ads (Honda and Imports) are getting seen but not clicked.</strong> Rather than spend more on them as is, we're replacing them with new video creative and sharper offers. This is already in motion, no action needed on your end.</p>
+    </div>
+  </div>
+
+  <!-- Competitor Snapshot -->
+  <div class="section">
+    <div class="section-bar"><div class="sq" style="background:var(--blue)"></div><span class="label">Where We Stand vs. The Competition</span><div class="rule"></div></div>
+    <div class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 16px;">
+      <div class="stat-card"><div class="stat-value">0</div><div class="stat-label">Local Dealers Running Video</div></div>
+      <div class="stat-card"><div class="stat-value">110+</div><div class="stat-label">Days Their Evergreen Ads Have Been Unchanged</div></div>
+      <div class="stat-card"><div class="stat-value">51</div><div class="stat-label">New Chevrolet Ads This Month Alone</div></div>
+    </div>
+    <div class="fix-card" style="border-left-color: var(--yellow);">
+      <p><strong>How this shapes our strategy.</strong> Roseville Toyota and Elk Grove Ford are both running static images only, some unchanged for over 100 days, and neither has touched video or carousel formats. Chevrolet's corporate team is the only one moving fast, and that's a national budget, not a local one. That gap is exactly why the Bronco Instant Experience, interior carousels, and fresh dealership visuals matter right now. Nobody local is doing any of it, so Hoblit stands out just by showing up with it.</p>
+    </div>
+  </div>
+
+  <!-- What's New This Week -->
+  <div class="section">
+    <div class="section-bar"><div class="sq" style="background:var(--yellow)"></div><span class="label">What's New This Week</span><div class="rule"></div></div>
+    <div class="new-grid">
+
+      <div class="new-card">
+        <div class="new-icon">▶</div>
+        <div class="new-title">Bronco Instant Experience Is Live</div>
+        <div class="new-body">An interactive Instant Experience is now running for the Bronco, a fast, immersive ad format built to feel like browsing the lot from a phone.</div>
+        <div class="new-why"><strong>Why</strong>Interactive formats are consistently outperforming static ones, so we built this as a reusable template. We can now stand up the same experience for any vehicle you want to spotlight or move off the lot.</div>
+        <span class="new-status pill pill-yellow">Live Now</span>
+      </div>
+
+      <div class="new-card">
+        <div class="new-icon">ES</div>
+        <div class="new-title">True Spanish-Language Ads</div>
+        <div class="new-body">Producing original Spanish-language ads built specifically for that audience, not English ads run through translation.</div>
+        <div class="new-why"><strong>Why</strong>Translated ads read as an afterthought. Original creative reaches a real segment of your market that generic, translated ads have never spoken to directly.</div>
+        <span class="new-status pill pill-blue">In Production</span>
+      </div>
+
+      <div class="new-card">
+        <div class="new-icon">◧</div>
+        <div class="new-title">Interior-Focused Carousel Ads</div>
+        <div class="new-body">New brand carousel ads highlighting vehicle interiors are in design now.</div>
+        <div class="new-why"><strong>Why</strong>Video wins on attention, but a well-built static carousel still earns clicks when it shows buyers something they can't get from a quick glance, like premium interior detail.</div>
+        <span class="new-status pill pill-blue">In Design</span>
+      </div>
+
+      <div class="new-card">
+        <div class="new-icon">◈</div>
+        <div class="new-title">More Dealership and Family Visuals</div>
+        <div class="new-body">Building out evergreen assets featuring real moments in the dealership and families in the showroom.</div>
+        <div class="new-why"><strong>Why</strong>Our current brand assets are a few months old and starting to slow down. This content replaces them before that decline shows up in performance.</div>
+        <span class="new-status pill pill-blue">In Production</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Why It Matters -->
+  <div class="section">
+    <div class="section-bar"><div class="sq" style="background:var(--purple)"></div><span class="label">Why It Matters, Key Learnings</span><div class="rule"></div></div>
+    <div class="learn-list">
+      <div class="learn-card">
+        <div class="learn-num">01</div>
+        <div>
+          <div class="learn-title">Video is winning, and it's not close.</div>
+          <div class="learn-body">Video ads are earning clicks at almost double the rate of static images this week. That's why every new initiative above leans on video or interactive formats first.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">02</div>
+        <div>
+          <div class="learn-title">Small budget tests reveal where to go bigger.</div>
+          <div class="learn-body">The Ford result proved itself on very little spend. We treat signals like this as an early warning system, telling us where to invest more before committing real budget.</div>
+        </div>
+      </div>
+      <div class="learn-card">
+        <div class="learn-num">03</div>
+        <div>
+          <div class="learn-title">Aging creative quietly costs you.</div>
+          <div class="learn-body">Older evergreen assets are still running but slowing down week over week. The new dealership, family, and interior content exists specifically to get ahead of that decline instead of reacting to it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="logo-mark"></div>
+    <div>Hoblit CDJR &nbsp;·&nbsp; 7 Day Creative Insights Report &nbsp;·&nbsp; July 13, 2026 &nbsp;·&nbsp; Prepared by Chamber Media</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const CORRECT_PASSWORD = "HDInsights";
+  const input = document.getElementById('gate-input');
+  const gate = document.getElementById('gate');
+  const content = document.getElementById('content');
+  const errorMsg = document.getElementById('gate-error');
+
+  function unlock() {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+    try { sessionStorage.setItem('hoblit_unlocked', '1'); } catch (e) {}
+  }
+
+  function checkPassword() {
+    if (input.value === CORRECT_PASSWORD) {
+      unlock();
+    } else {
+      errorMsg.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  try {
+    if (sessionStorage.getItem('hoblit_unlocked') === '1') {
+      unlock();
+    }
+  } catch (e) {}
+</script>
+
+</body>
+</html>
