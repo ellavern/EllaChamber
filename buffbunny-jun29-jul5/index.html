@@ -209,6 +209,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 </head>
 <body>
 <script>
+(function(){var k=new URLSearchParams(location.search).get('key');if(k==='BBInsights'){sessionStorage.setItem('bbUnlocked','1');}})();
 var _u=sessionStorage.getItem('bbUnlocked');if(_u!=='1'){document.write('<style>body{visibility:hidden;}</style>');}
 document.write('<div id="pwGate" style="position:fixed;inset:0;z-index:99999;background:#0a0a0f;visibility:visible;display:flex;align-items:center;justify-content:center;font-family:sans-serif;"><div style="background:#1c1c25;border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:40px;max-width:360px;width:90%;text-align:center;"><div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#c8a96e;margin-bottom:16px;">BuffBunny Collection</div><div style="font-size:14px;color:#a0a0b8;margin-bottom:20px;">Enter password to view this report</div><input id="pwInput" type="password" placeholder="Password" onkeydown="if(event.keyCode==13)checkPw()" style="width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);background:#111118;color:#f0f0f8;font-size:14px;margin-bottom:12px;box-sizing:border-box;" /><button onclick="checkPw()" style="width:100%;padding:10px 12px;border-radius:8px;border:none;background:#c8a96e;color:#0a0a0f;font-weight:600;font-size:14px;cursor:pointer;">View Report</button><div id="pwError" style="color:#ff4d6d;font-size:12px;margin-top:10px;display:none;">Incorrect password, try again.</div></div></div>');
 if(_u==='1'){document.write('<style>#pwGate{display:none;}</style>');}
@@ -220,7 +221,7 @@ function checkPw(){var val=document.getElementById('pwInput').value;if(val==='BB
 <h1>Creative Insights Report</h1>
 <div class="period">June 29 to July 5, 2026 &nbsp;&middot;&nbsp; 7d Click / 1d View Attribution</div>
 <div>
-<a class="week-nav-link" href="https://ellavern.github.io/EllaChamber/buffbunny-jul8-14/">This week's report (July 8) &rarr;</a>
+<a class="week-nav-link" href="https://ellavern.github.io/EllaChamber/buffbunny-jul8-14/?key=BBInsights">This week's report (July 8) &rarr;</a>
 </div>
 </div>
 
