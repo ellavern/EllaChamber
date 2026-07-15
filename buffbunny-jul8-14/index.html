@@ -1,0 +1,731 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Creative Insights Report | BuffBunny Collection | July 8-14, 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bb-pink: #E91E8C;
+      --bb-dark: #0D0D0D;
+      --bb-gray: #1A1A1A;
+      --bb-border: #2A2A2A;
+      --bb-text: #F0F0F0;
+      --bb-muted: #888;
+      --bb-green: #22C55E;
+      --bb-red: #EF4444;
+      --bb-yellow: #F59E0B;
+      --bb-blue: #3B82F6;
+    }
+
+    body {
+      background: var(--bb-dark);
+      color: var(--bb-text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 48px 24px 64px; }
+
+    /* HEADER */
+    .report-header { margin-bottom: 36px; }
+    .brand-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--bb-pink);
+      margin-bottom: 10px;
+    }
+    .report-title {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .report-subtitle {
+      font-size: 14px;
+      color: var(--bb-muted);
+    }
+
+    .week-nav { margin-top: 14px; }
+    .week-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--bb-pink);
+      text-decoration: none;
+      background: rgba(233,30,140,0.1);
+      border: 1px solid rgba(233,30,140,0.25);
+      border-radius: 20px;
+      padding: 6px 14px;
+    }
+    .week-nav-link:hover { background: rgba(233,30,140,0.18); }
+
+    /* ACCOUNT SUMMARY */
+    .summary-block {
+      background: var(--bb-gray);
+      border: 1px solid var(--bb-border);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+      margin-bottom: 40px;
+    }
+    .summary-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .summary-subtitle { font-size: 12px; color: var(--bb-muted); margin-bottom: 22px; }
+
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .kpi-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--bb-border);
+      border-radius: 12px;
+      padding: 16px 14px;
+    }
+    .kpi-label { font-size: 11px; color: var(--bb-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+    .kpi-value { font-size: 24px; font-weight: 800; color: var(--bb-text); line-height: 1; }
+    .kpi-value.green { color: var(--bb-green); }
+    .kpi-value.pink { color: var(--bb-pink); }
+    .kpi-sub { font-size: 11px; color: var(--bb-muted); margin-top: 6px; }
+
+    .context-note {
+      background: rgba(59,130,246,0.07);
+      border: 1px solid rgba(59,130,246,0.22);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: var(--bb-text);
+      line-height: 1.7;
+    }
+    .context-note strong { color: var(--bb-blue); }
+    .context-note .g { color: var(--bb-green); font-weight: 700; }
+
+    /* SECTIONS */
+    .section { margin-bottom: 48px; }
+    .section-header { display: flex; gap: 16px; align-items: baseline; margin-bottom: 20px; }
+    .section-number {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--bb-pink);
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-subtitle { font-size: 12px; color: var(--bb-muted); margin-top: 3px; }
+
+    .insight-note {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--bb-text);
+    }
+    .insight-note.green { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.22); }
+    .insight-note.green strong { color: var(--bb-green); }
+    .insight-note.blue { background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.22); }
+    .insight-note.blue strong { color: var(--bb-blue); }
+    .insight-note.yellow { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.22); }
+    .insight-note.yellow strong { color: var(--bb-yellow); }
+    .insight-note.purple { background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.22); }
+    .insight-note.purple strong { color: #A855F7; }
+
+    /* AD CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .cards-grid.top3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-grid.top4 { grid-template-columns: repeat(4, 1fr); }
+    .cards-grid.top5 { grid-template-columns: repeat(5, 1fr); }
+
+    .ad-card {
+      background: var(--bb-gray);
+      border: 1px solid var(--bb-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .ad-card.winner { border-color: rgba(34,197,94,0.4); }
+    .ad-card.leader { border-color: rgba(233,30,140,0.4); }
+    .ad-card.danger { border-color: rgba(239,68,68,0.35); }
+
+    .ad-media-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #1c1c1c;
+      overflow: hidden;
+    }
+    .ad-media-wrap video, .ad-media-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .ad-format-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #fff; font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 20px;
+      letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .ad-rank-badge {
+      position: absolute; top: 8px; right: 8px;
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+    }
+    .ad-rank-badge.gold { background: #F59E0B; color: #000; }
+    .ad-rank-badge.silver { background: #9CA3AF; color: #000; }
+    .ad-rank-badge.bronze { background: #CD7F32; color: #000; }
+    .ad-rank-badge.plain { background: rgba(255,255,255,0.15); color: #fff; }
+
+    .ad-action-badge {
+      position: absolute; bottom: 8px; left: 8px; right: 8px;
+      padding: 4px 10px; border-radius: 20px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.4px;
+      text-align: center; text-transform: uppercase;
+    }
+    .ad-action-badge.kill { background: rgba(239,68,68,0.85); color: #fff; }
+    .ad-action-badge.scale { background: rgba(34,197,94,0.85); color: #000; }
+    .ad-action-badge.refresh { background: rgba(245,158,11,0.85); color: #000; }
+
+    .ad-body { padding: 14px 14px 16px; }
+    .ad-metrics { display: flex; flex-direction: column; gap: 7px; }
+    .ad-metric-row { display: flex; justify-content: space-between; align-items: center; }
+    .ad-metric-label { font-size: 11px; color: var(--bb-muted); }
+    .ad-metric-value { font-size: 13px; font-weight: 700; color: var(--bb-text); }
+    .ad-metric-value.green { color: var(--bb-green); }
+    .ad-metric-value.red { color: var(--bb-red); }
+    .ad-metric-value.yellow { color: var(--bb-yellow); }
+    .ad-metric-value.pink { color: var(--bb-pink); }
+
+    .ad-tag {
+      display: inline-block;
+      background: rgba(233,30,140,0.15); color: var(--bb-pink);
+      font-size: 10px; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px;
+      margin-top: 8px; letter-spacing: 0.3px;
+    }
+    .ad-tag.green { background: rgba(34,197,94,0.15); color: var(--bb-green); }
+    .ad-tag.red { background: rgba(239,68,68,0.15); color: var(--bb-red); }
+    .ad-tag.blue { background: rgba(59,130,246,0.15); color: var(--bb-blue); }
+    .ad-tag.gray { background: rgba(255,255,255,0.08); color: var(--bb-muted); }
+
+    /* PROSPECTING HERO */
+    .prospecting-hero {
+      background: var(--bb-gray);
+      border: 1px solid rgba(233,30,140,0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+    }
+    .prospecting-media { width: 100%; height: 100%; object-fit: cover; }
+    .prospecting-body { padding: 26px 30px; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+    .prospecting-label { font-size: 11px; font-weight: 700; color: var(--bb-pink); letter-spacing: 1px; text-transform: uppercase; }
+    .prospecting-title { font-size: 20px; font-weight: 800; line-height: 1.3; margin-top: 4px; }
+    .prospecting-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .prospecting-kpi { border-left: 2px solid var(--bb-border); padding-left: 14px; }
+    .prospecting-kpi-label { font-size: 11px; color: var(--bb-muted); margin-bottom: 4px; }
+    .prospecting-kpi-value { font-size: 20px; font-weight: 800; }
+    .prospecting-kpi-value.green { color: var(--bb-green); }
+    .prospecting-kpi-value.pink { color: var(--bb-pink); }
+
+    /* COMPETITOR */
+    .competitor-block { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .competitor-brand { background: var(--bb-gray); border: 1px solid var(--bb-border); border-radius: 14px; overflow: hidden; }
+    .competitor-header { padding: 14px 18px; border-bottom: 1px solid var(--bb-border); display: flex; align-items: center; gap: 10px; }
+    .competitor-name { font-size: 14px; font-weight: 700; }
+    .competitor-meta { font-size: 11px; color: var(--bb-muted); margin-left: auto; }
+    .competitor-images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .competitor-img-wrap { aspect-ratio: 1/1; overflow: hidden; position: relative; }
+    .competitor-img-wrap img, .competitor-img-wrap video { width: 100%; height: 100%; object-fit: cover; }
+    .competitor-fmt-badge {
+      position: absolute; bottom: 4px; right: 4px;
+      background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700;
+      padding: 2px 5px; border-radius: 4px; text-transform: uppercase;
+    }
+    .competitor-insight { padding: 14px 18px; border-top: 1px solid var(--bb-border); font-size: 12px; color: var(--bb-muted); line-height: 1.6; }
+    .competitor-insight strong { color: var(--bb-text); }
+
+    .divider { border: none; border-top: 1px solid var(--bb-border); margin: 0 0 48px; }
+
+    .report-footer {
+      text-align: center;
+      padding: 28px 24px 8px;
+      font-size: 11px;
+      color: var(--bb-muted);
+      letter-spacing: 0.3px;
+      border-top: 1px solid var(--bb-border);
+    }
+
+    @media (max-width: 900px) {
+      .kpi-strip { grid-template-columns: repeat(2, 1fr); }
+      .cards-grid.top3, .cards-grid.top4, .cards-grid.top5 { grid-template-columns: repeat(2, 1fr); }
+      .prospecting-hero { grid-template-columns: 1fr; }
+      .prospecting-media { max-height: 280px; }
+      .competitor-block { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="report-header">
+    <div class="brand-label">BuffBunny Collection</div>
+    <div class="report-title">Creative Insights Report</div>
+    <div class="report-subtitle">July 8 to 14, 2026 &middot; 7d Click / 1d View Attribution</div>
+    <div class="week-nav">
+      <a class="week-nav-link" href="https://ellavern.github.io/EllaChamber/buffbunny-jun29-jul5/">&larr; Last week's report (June 29 to July 5)</a>
+    </div>
+  </div>
+
+  <!-- ACCOUNT SUMMARY -->
+  <div class="summary-block">
+    <div class="summary-title">7 Day Performance Overview</div>
+    <div class="summary-subtitle">All active creatives, $20+ spend &middot; 22 active ad units &middot; July 8 to 14</div>
+    <div class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Spend</div>
+        <div class="kpi-value">$1,864</div>
+        <div class="kpi-sub">22 active creatives</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Revenue</div>
+        <div class="kpi-value pink">$29,226</div>
+        <div class="kpi-sub">234 purchases</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Blended ROAS</div>
+        <div class="kpi-value green">15.68x</div>
+        <div class="kpi-sub">Account wide average</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Blended CPA</div>
+        <div class="kpi-value">$7.97</div>
+        <div class="kpi-sub">Cost per purchase</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Purchases</div>
+        <div class="kpi-value">234</div>
+        <div class="kpi-sub">Avg order value $124.90</div>
+      </div>
+    </div>
+    <div class="context-note">
+      <strong>Why this week looks smaller than last week:</strong> the July 2 to 6 sale spent $13,538 and returned $670,810 at a 49.6x blended ROAS, all sale pricing and warm retargeting volume. Since the sale ended, spend has been trickled back down each day on purpose to land the month inside the agreed budget, so this week's totals are lower on every line. What matters is that full price, non sale performance is still strong: <span class="g">15.68x ROAS</span> and a healthy $7.97 CPA off a much smaller base.
+    </div>
+  </div>
+
+  <!-- 01: BEST CPA & ROAS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <div>
+        <div class="section-title">Best CPA &amp; ROAS: Clear Leaders</div>
+        <div class="section-subtitle">Highest ROAS this week, all under $50 in spend. These are the creatives that most deserve more budget.</div>
+      </div>
+    </div>
+    <div class="cards-grid top3">
+      <div class="ad-card leader">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a70/image.jpg" alt="Ad creative" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge gold">1</div>
+          <div class="ad-action-badge scale">Scale Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">68.76x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value green">$4.16</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">8</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value yellow">$33</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">AOV</span><span class="ad-metric-value">$285.86</span></div>
+          </div>
+          <span class="ad-tag green">Highest AOV in account</span>
+        </div>
+      </div>
+
+      <div class="ad-card leader">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c64e611237eecac16a97d/image.jpg" alt="Ad creative" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge silver">2</div>
+          <div class="ad-action-badge scale">Scale Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">42.89x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value green">$3.19</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">15</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value yellow">$48</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.34%</span></div>
+          </div>
+          <span class="ad-tag green">Lowest CPA in account</span>
+        </div>
+      </div>
+
+      <div class="ad-card leader">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c64e611237eecac16a9bc/image.jpg" alt="Ad creative" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge bronze">3</div>
+          <div class="ad-action-badge scale">Scale Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">27.04x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value green">$7.13</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">3</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value yellow">$21</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.29%</span></div>
+          </div>
+          <span class="ad-tag">Image only</span>
+        </div>
+      </div>
+    </div>
+    <div class="insight-note green">
+      <strong>Why these three:</strong> all three are image ads receiving under $50 in spend, and together they generated $4,914 in revenue on just $102 in spend, a 48x aggregate return. The account is not yet allocating meaningful budget toward its best performers. Moving even a small amount of daily budget here is the single fastest lever available this week.
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 02: BEST PROSPECTING AD -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <div>
+        <div class="section-title">Best Performing Prospecting Ad, Account Wide</div>
+        <div class="section-subtitle">Cold audience targeting, meaningful spend. This is the account's scale engine this week.</div>
+      </div>
+    </div>
+    <div class="prospecting-hero">
+      <video class="prospecting-media" autoplay muted loop playsinline>
+        <source src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d4/video.mp4" type="video/mp4" />
+      </video>
+      <div class="prospecting-body">
+        <div>
+          <div class="prospecting-label">Top Volume Driver</div>
+          <div class="prospecting-title">Video, 44 purchases at 16.89x ROAS</div>
+        </div>
+        <div class="prospecting-kpis">
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">ROAS</div>
+            <div class="prospecting-kpi-value green">16.89x</div>
+          </div>
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">CPA</div>
+            <div class="prospecting-kpi-value pink">$5.70</div>
+          </div>
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">Spend</div>
+            <div class="prospecting-kpi-value">$250</div>
+          </div>
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">Purchases</div>
+            <div class="prospecting-kpi-value">44</div>
+          </div>
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">Thumbstop</div>
+            <div class="prospecting-kpi-value">14.9%</div>
+          </div>
+          <div class="prospecting-kpi">
+            <div class="prospecting-kpi-label">Hold Rate</div>
+            <div class="prospecting-kpi-value">3.59%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-note blue">
+      <strong>What this says:</strong> this is the only creative hitting both meaningful scale ($250 spend) and strong efficiency (16.89x ROAS, $5.70 CPA), generating $4,235 in revenue this week. Thumbstop at 14.9% is solid but there is room to push it higher with a stronger first second hook. Recommend testing 2 to 3 new hook variations on this same proven body.
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 03: ACCOUNT WIDE TOP PERFORMERS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <div>
+        <div class="section-title">Account Wide Top Performers</div>
+        <div class="section-subtitle">Best balance of spend and ROAS. These five creatives are the core of the account's revenue this week.</div>
+      </div>
+    </div>
+    <div class="cards-grid top5">
+      <div class="ad-card winner">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c56d611237eecacf50ca2/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge gold">1</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">15.14x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value pink">$316</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$8.54</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">37</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.36%</span></div>
+          </div>
+          <span class="ad-tag">Top spender</span>
+        </div>
+      </div>
+
+      <div class="ad-card winner">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a6d/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge silver">2</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">11.23x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value pink">$292</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$11.69</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">25</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.23%</span></div>
+          </div>
+          <span class="ad-tag">2nd highest spend</span>
+        </div>
+      </div>
+
+      <div class="ad-card winner">
+        <div class="ad-media-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d4/video.mp4" type="video/mp4" />
+          </video>
+          <div class="ad-format-badge">Video</div>
+          <div class="ad-rank-badge bronze">3</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">16.89x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value pink">$251</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$5.70</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">44</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Thumbstop</span><span class="ad-metric-value">14.9%</span></div>
+          </div>
+          <span class="ad-tag blue">Best video</span>
+        </div>
+      </div>
+
+      <div class="ad-card winner">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c56d611237eecacf50cd2/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge plain">4</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">16.57x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value">$182</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$9.10</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">20</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value green">1.77%</span></div>
+          </div>
+          <span class="ad-tag green">Highest CTR of top 5</span>
+        </div>
+      </div>
+
+      <div class="ad-card winner">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c64e611237eecac16a96d/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-rank-badge plain">5</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value green">15.97x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value">$143</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$10.24</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">14</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.11%</span></div>
+          </div>
+          <span class="ad-tag gray">Image static</span>
+        </div>
+      </div>
+    </div>
+    <div class="insight-note green">
+      <strong>What this says:</strong> these five creatives combined spent $1,184, about 64% of total weekly spend, and returned an average 15.16x ROAS. Images hold four of the five spots, but the single video is tied for the best ROAS in the group while also driving the most purchases. Both formats belong in the mix, image for efficiency, video for volume.
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 04: UNDERPERFORMING -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <div>
+        <div class="section-title">What's Underperforming: Reduce and Refresh</div>
+        <div class="section-subtitle">Creatives that are not returning acceptable results this week, independent of the account's overall budget pullback.</div>
+      </div>
+    </div>
+    <div class="cards-grid top4">
+      <div class="ad-card danger">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a74/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-action-badge kill">Kill Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value red">2.21x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value red">$19.51</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">4</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value red">$78</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">AOV</span><span class="ad-metric-value red">$43.21</span></div>
+          </div>
+          <span class="ad-tag red">Lowest ROAS at meaningful spend</span>
+        </div>
+      </div>
+
+      <div class="ad-card danger">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c64e611237eecac16a9b3/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-action-badge kill">Kill Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value red">0x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value red">n/a</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value red">0</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value">$14</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">0.93%</span></div>
+          </div>
+          <span class="ad-tag red">Zero purchases</span>
+        </div>
+      </div>
+
+      <div class="ad-card danger">
+        <div class="ad-media-wrap">
+          <img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a72/image.jpg" alt="Ad" />
+          <div class="ad-format-badge">Image</div>
+          <div class="ad-action-badge kill">Kill Now</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value red">0x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value red">n/a</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value red">0</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Spend</span><span class="ad-metric-value">$8.60</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CTR</span><span class="ad-metric-value">1.02%</span></div>
+          </div>
+          <span class="ad-tag red">Zero purchases</span>
+        </div>
+      </div>
+
+      <div class="ad-card danger">
+        <div class="ad-media-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d9/video.mp4" type="video/mp4" />
+          </video>
+          <div class="ad-format-badge">Video</div>
+          <div class="ad-action-badge refresh">Refresh Hook</div>
+        </div>
+        <div class="ad-body">
+          <div class="ad-metrics">
+            <div class="ad-metric-row"><span class="ad-metric-label">ROAS</span><span class="ad-metric-value yellow">6.45x</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">CPA</span><span class="ad-metric-value">$9.13</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Purchases</span><span class="ad-metric-value">6</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">AOV</span><span class="ad-metric-value red">$58.97</span></div>
+            <div class="ad-metric-row"><span class="ad-metric-label">Thumbstop</span><span class="ad-metric-value">13.8%</span></div>
+          </div>
+          <span class="ad-tag yellow">Low AOV pulling ROAS down</span>
+        </div>
+      </div>
+    </div>
+    <div class="insight-note yellow">
+      <strong>Our suggestion:</strong> pause the 2.21x ROAS image and the two zero purchase ads today. Combined they consumed about $100 and returned roughly $170, a 1.7x blended ROAS that is dragging account efficiency down. That freed budget is the easiest source of funding for the ROAS leaders in Section 01. Separately, note that nearly every creative in the account is down week over week right now. That broad dip is the planned post sale budget pullback described above, not a fatigue signal on its own, so it should not be read the same way as the four creatives flagged here.
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- 05: COMPETITOR SNAPSHOT -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-number">05</div>
+      <div>
+        <div class="section-title">Competitor Creative Snapshot</div>
+        <div class="section-subtitle">What Gymshark and Oner Active are running right now, and what we can borrow from it.</div>
+      </div>
+    </div>
+    <div class="competitor-block">
+      <div class="competitor-brand">
+        <div class="competitor-header">
+          <span class="competitor-name">Gymshark</span>
+          <span class="competitor-meta">Top 5 by impression rank &middot; 7 to 38 days active</span>
+        </div>
+        <div class="competitor-images">
+          <div class="competitor-img-wrap">
+            <video autoplay muted loop playsinline>
+              <source src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/2465879570597776/6a48efe6708e10d242612d2e/39163b54-07c7-453f-ac88-520253467aa7.mp4" type="video/mp4" />
+            </video>
+            <div class="competitor-fmt-badge">Video</div>
+          </div>
+          <div class="competitor-img-wrap">
+            <video autoplay muted loop playsinline>
+              <source src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1638508153918070/6a48efe8708e10d242612da8/148d2a4b-2fc1-47e8-85e1-9374a88f443a.mp4" type="video/mp4" />
+            </video>
+            <div class="competitor-fmt-badge">Video</div>
+          </div>
+          <div class="competitor-img-wrap">
+            <img src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1432832601867718/69c3a6de3ea143932057081c/1c7b9337-541c-4c86-ab10-7b14a81527f0.jpg" alt="Gymshark" />
+            <div class="competitor-fmt-badge">Image</div>
+          </div>
+        </div>
+        <div class="competitor-insight">
+          <strong>What they're doing:</strong> flooding the feed with fresh video. 3 of their top 5 ads launched July 2nd and are already hitting top impression rank after just 7 days, paired with long running image statics (33 to 38 days) as always on support. <strong>Gap for us:</strong> our video cadence is too slow. Gymshark is launching multiple videos at once to find winners fast.
+        </div>
+      </div>
+      <div class="competitor-brand">
+        <div class="competitor-header">
+          <span class="competitor-name">Oner Active</span>
+          <span class="competitor-meta">Top 5 by impression rank &middot; 26 to 110 days active</span>
+        </div>
+        <div class="competitor-images">
+          <div class="competitor-img-wrap">
+            <video autoplay muted loop playsinline>
+              <source src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1450753969844465/69b666d9c32a3e3756f71e98/922a5c03-cbcd-469a-b533-c56ea282ee40.mp4" type="video/mp4" />
+            </video>
+            <div class="competitor-fmt-badge">Video, 110 days</div>
+          </div>
+          <div class="competitor-img-wrap">
+            <video autoplay muted loop playsinline>
+              <source src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1307678661225479/69e177edcf1b3c8e902393f3/1363a413-c545-43e5-aefb-ecf260c1c107.mp4" type="video/mp4" />
+            </video>
+            <div class="competitor-fmt-badge">Video, 26 days</div>
+          </div>
+          <div class="competitor-img-wrap">
+            <img src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/879370274475124/6a2365b11e4a1b7b57559746/35c260c0-4ce2-4ad1-ab1c-92f79bb784c0.jpg" alt="Oner Active carousel" />
+            <div class="competitor-fmt-badge">Carousel, 8 slides</div>
+          </div>
+        </div>
+        <div class="competitor-insight">
+          <strong>What they're doing:</strong> almost entirely video. 4 of their top 5 ads are video, with a heavy 8 slide carousel as their secondary format. Standout signal: their top video has run for 110 days straight, proving a strong video concept doesn't need constant refreshing. <strong>Gap for us:</strong> we're not testing big carousels and we don't have a single video built to run long term.
+        </div>
+      </div>
+    </div>
+    <div class="insight-note purple">
+      <strong>Takeaway for BuffBunny:</strong> both competitors point to the same fix from different angles. Gymshark's rapid fire video launches (3 fresh cuts in one week) show the value of testing several video concepts at once instead of one at a time, and Oner Active's 110 day video plus 8 slide carousel show that a strong video or carousel concept can be evergreen rather than something to rotate constantly. Speed up video testing cadence, and build a bigger, bundle style carousel to chase both formats at once.
+    </div>
+  </div>
+
+</div>
+
+<div class="report-footer">
+  BuffBunny Collection &middot; Creative Insights Report &middot; Last 7 Days &middot; Confidential
+</div>
+
+</body>
+</html>
