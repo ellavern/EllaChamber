@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>BuffBunny Collection - Creative Insights Report</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #222222;
+      --text: #f0f0f0;
+      --muted: #888888;
+      --accent: #d4a85a;
+      --accent-light: #e8c98a;
+      --green: #4ade80;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --blue: #60a5fa;
+      --purple: #c084fc;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 48px;
+    }
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header-left h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .header-left .client-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .header-right { text-align: right; }
+    .header-right .date-range {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .header-right .prepared-by {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* MAIN */
+    .main { padding: 40px 48px; max-width: 1200px; margin: 0 auto; }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* KPI SNAPSHOT */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .kpi-card .kpi-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .kpi-card .kpi-value {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .kpi-card .kpi-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .kpi-card.green-border { border-left: 3px solid var(--green); }
+    .kpi-card.accent-border { border-left: 3px solid var(--accent); }
+    .kpi-card.red-border { border-left: 3px solid var(--red); }
+
+    /* ALERT BANNER */
+    .alert-banner {
+      background: rgba(251, 191, 36, 0.06);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: #fde68a;
+      line-height: 1.7;
+    }
+    .alert-banner strong { color: #fbbf24; }
+
+    /* CREATIVE GRID */
+    .creative-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .creative-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .creative-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .creative-card.winner { border-color: rgba(74, 222, 128, 0.35); }
+    .creative-card.loser  { border-color: rgba(248, 113, 113, 0.25); }
+    .creative-card.middle { border-color: rgba(251, 191, 36, 0.25); }
+
+    .creative-thumb {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      background: var(--surface2);
+      display: block;
+    }
+    .video-wrapper {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--surface2);
+      overflow: hidden;
+      position: relative;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .format-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .format-video  { background: rgba(96,165,250,0.9); color:#fff; }
+    .format-image  { background: rgba(0,0,0,0.65); color:#fff; }
+
+    .rank-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      z-index: 2;
+    }
+    .rank-gold   { background: #d4a85a; color: #000; }
+    .rank-silver { background: #888; color: #fff; }
+    .rank-bronze { background: #6b4423; color: #fff; }
+    .rank-red    { background: rgba(248,113,113,0.9); color: #fff; }
+
+    .creative-meta {
+      padding: 16px;
+    }
+    .creative-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .metric-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    .metric-item { }
+    .metric-item .m-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 2px;
+    }
+    .metric-item .m-value {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .metric-item .m-value.green { color: var(--green); }
+    .metric-item .m-value.yellow { color: var(--yellow); }
+    .metric-item .m-value.red { color: var(--red); }
+
+    .verdict-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .v-win    { background: rgba(74,222,128,0.15); color: var(--green); }
+    .v-mid    { background: rgba(251,191,36,0.12); color: var(--yellow); }
+    .v-cut    { background: rgba(248,113,113,0.12); color: var(--red); }
+    .v-scale  { background: rgba(96,165,250,0.12); color: var(--blue); }
+
+    /* INSIGHT CARDS */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .insight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .insight-card .insight-icon { font-size: 22px; margin-bottom: 12px; }
+    .insight-card .insight-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .insight-card .insight-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .insight-card .insight-stat {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ITERATION */
+    .iteration-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .iteration-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .iteration-num {
+      width: 28px; height: 28px; min-width: 28px;
+      background: var(--accent); color: #000;
+      font-size: 12px; font-weight: 800;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .iteration-content .it-title {
+      font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px;
+    }
+    .iteration-content .it-body {
+      font-size: 12px; color: var(--muted); line-height: 1.6;
+    }
+
+    /* COMPETITOR SECTION */
+    .comp-section { margin-bottom: 44px; }
+    .comp-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    }
+    .comp-name { font-size: 17px; font-weight: 700; color: var(--text); }
+    .comp-tag {
+      padding: 3px 10px; border-radius: 4px;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+    }
+    .tag-scale { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .tag-watch { background: rgba(251,191,36,0.12);  color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+    .comp-insight {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px 20px; margin-bottom: 16px;
+      font-size: 13px; color: var(--muted); line-height: 1.7;
+    }
+    .comp-insight strong { color: var(--text); }
+    .comp-gallery {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    }
+    .comp-creative {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border); background: var(--surface); position: relative;
+    }
+    .comp-thumb {
+      width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--surface2);
+    }
+    .comp-meta { padding: 8px 10px; font-size: 10px; color: var(--muted); }
+    .comp-days { font-weight: 600; color: var(--text); }
+    .comp-video-wrap {
+      width: 100%; aspect-ratio: 4/5; background: var(--surface2); overflow: hidden;
+    }
+    .comp-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* TAKEAWAY */
+    .takeaway-box {
+      background: rgba(212,168,90,0.06); border: 1px solid rgba(212,168,90,0.2);
+      border-radius: 10px; padding: 24px 28px; margin-top: 28px;
+    }
+    .takeaway-box .tb-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .takeaway-box p { font-size: 14px; color: var(--text); line-height: 1.8; }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border); padding: 24px 48px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer .f-note { font-size: 11px; color: var(--muted); }
+    .footer .f-brand { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+    /* COMPARISON TABLE */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+      font-size: 13px;
+    }
+    .compare-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .compare-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: middle;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .rank-num {
+      font-size: 13px; font-weight: 800; color: var(--muted);
+    }
+    .compare-table .val-big {
+      font-size: 15px; font-weight: 800; color: var(--text);
+    }
+    .compare-table .val-green { color: var(--green); }
+    .compare-table .val-yellow { color: var(--yellow); }
+    .compare-table .val-red { color: var(--red); }
+    .compare-table .format-chip {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+    }
+    .chip-video { background: rgba(96,165,250,0.15); color: var(--blue); }
+    .chip-image { background: rgba(212,168,90,0.12); color: var(--accent); }
+
+    /* WEEK NAV */
+    .week-nav { margin-top: 10px; }
+    .week-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      background: rgba(212,168,90,0.08);
+      border: 1px solid rgba(212,168,90,0.25);
+      border-radius: 20px;
+      padding: 5px 12px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .week-nav-link:hover { background: rgba(212,168,90,0.16); border-color: rgba(212,168,90,0.4); }
+
+    /* PASSWORD GATE */
+    #pwGate { display: none; }
+    body.pw-locked #pwGate { display: flex; }
+    body.pw-locked > *:not(#pwGate) { visibility: hidden; }
+    .pw-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(212,168,90,0.14), transparent 60%),
+        var(--bg);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      opacity: 1;
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+    .pw-gate.pw-unlocking { opacity: 0; transform: scale(0.97); }
+    .pw-card {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      background: linear-gradient(180deg, var(--surface2), var(--surface));
+      border: 1px solid rgba(212,168,90,0.18);
+      border-radius: 18px;
+      padding: 40px 36px 32px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    }
+    .pw-mark {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(212,168,90,0.25);
+    }
+    .pw-mark svg { width: 20px; height: 20px; }
+    .pw-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .pw-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .pw-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 26px;
+    }
+    .pw-field { margin-bottom: 14px; }
+    .pw-field input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .pw-field input::placeholder { color: #555; }
+    .pw-field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212,168,90,0.15);
+    }
+    .pw-btn {
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      color: #1a1305;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: 0 8px 20px rgba(212,168,90,0.2);
+    }
+    .pw-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(212,168,90,0.3); }
+    .pw-btn:active { transform: translateY(0); }
+    .pw-error {
+      display: none;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--red);
+    }
+    .pw-foot {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 10.5px;
+      color: #555;
+      letter-spacing: 0.3px;
+    }
+    @keyframes pwShake {
+      10%, 90% { transform: translateX(-1px); }
+      20%, 80% { transform: translateX(2px); }
+      30%, 50%, 70% { transform: translateX(-4px); }
+      40%, 60% { transform: translateX(4px); }
+    }
+    .pw-shake { animation: pwShake 0.4s ease; }
+  </style>
+</head>
+<body>
+
+<script>
+(function(){
+  var key = new URLSearchParams(location.search).get('key');
+  if (key === 'BBInsights') { try { sessionStorage.setItem('bbUnlocked','1'); } catch(e){} }
+  var unlocked = false;
+  try { unlocked = sessionStorage.getItem('bbUnlocked') === '1'; } catch(e){}
+  if (!unlocked) { document.body.classList.add('pw-locked'); }
+})();
+</script>
+
+<div id="pwGate" class="pw-gate">
+  <div class="pw-card">
+    <div class="pw-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10V8a6 6 0 1112 0v2" stroke="#1a1305" stroke-width="2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="11" rx="3" fill="#1a1305"/></svg>
+    </div>
+    <div class="pw-eyebrow">BuffBunny Collection</div>
+    <div class="pw-title">Creative Insights Report</div>
+    <p class="pw-sub">This report is password protected.<br>Enter the access code to continue.</p>
+    <div class="pw-field">
+      <input id="pwInput" type="password" placeholder="Enter password" autocomplete="off" onkeydown="if(event.keyCode===13)checkPw()" />
+    </div>
+    <button class="pw-btn" onclick="checkPw()">View Report</button>
+    <div id="pwError" class="pw-error">Incorrect password - please try again.</div>
+    <div class="pw-foot">Chamber Media · Confidential</div>
+  </div>
+</div>
+
+<script>
+function checkPw(){
+  var val = document.getElementById('pwInput').value;
+  if (val === 'BBInsights') {
+    try { sessionStorage.setItem('bbUnlocked','1'); } catch(e){}
+    var gate = document.getElementById('pwGate');
+    gate.classList.add('pw-unlocking');
+    setTimeout(function(){
+      document.body.classList.remove('pw-locked');
+    }, 320);
+  } else {
+    var card = document.querySelector('.pw-card');
+    card.classList.remove('pw-shake');
+    void card.offsetWidth;
+    card.classList.add('pw-shake');
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
+</script>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="client-tag">Client Report</div>
+        <h1>BuffBunny Collection - Creative Insights</h1>
+        <div class="week-nav">
+          <a class="week-nav-link" href="https://ellavern.github.io/EllaChamber/buffbunny-jul8-14/?key=BBInsights">&larr; Last week's report (July 8-14)</a>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="date-range">July 15 - July 22, 2026</div>
+        <div class="prepared-by">Prepared by Chamber Media</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <!-- ACCOUNT SNAPSHOT -->
+    <div class="section-label">Account Snapshot</div>
+    <h2 class="section-title">Last 7 Days at a Glance</h2>
+    <p class="section-subtitle">Filtered to creatives with $100+ spend. Ranked by ROAS - the truest signal of what's actually working.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card accent-border">
+        <div class="kpi-label">Total Spend</div>
+        <div class="kpi-value">$1,459</div>
+        <div class="kpi-sub">Last 7 days across 22 creatives</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Best ROAS</div>
+        <div class="kpi-value">23.7x</div>
+        <div class="kpi-sub">Video creative - $100+ spend</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Best CPA</div>
+        <div class="kpi-value">$4.44</div>
+        <div class="kpi-sub">Same video creative</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Best CPM</div>
+        <div class="kpi-value">$9.59</div>
+        <div class="kpi-sub">Top image creative</div>
+      </div>
+      <div class="kpi-card red-border">
+        <div class="kpi-label">Worst ROAS ($100+ spend)</div>
+        <div class="kpi-value">9.65x</div>
+        <div class="kpi-sub">New image batch - $13.22 CPA</div>
+      </div>
+    </div>
+
+    <!-- ALERT -->
+    <div class="alert-banner">
+      <strong>Key finding:</strong> The highest-spend creative in the account ($245 spend) is NOT the top ROAS performer. It ranks 3rd by ROAS at 15.3x with a $9.08 CPA - more than double the $4.44 CPA of the #1 creative. Budget is not perfectly following performance yet.
+    </div>
+
+    <!-- TOP PERFORMERS TABLE -->
+    <div class="section-label">Performance Ranked</div>
+    <h2 class="section-title">Creatives with $100+ Spend - Ranked by ROAS</h2>
+    <p class="section-subtitle">Only 5 creatives qualify at the $100 threshold this week. Here's how they stack up.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Format</th>
+          <th>Spend</th>
+          <th>ROAS</th>
+          <th>CPA</th>
+          <th>CPM</th>
+          <th>Purchases</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(74,222,128,0.04);">
+          <td><span class="rank-num">1</span></td>
+          <td><span class="format-chip chip-video">Video</span></td>
+          <td><span class="val-big">$209</span></td>
+          <td><span class="val-big val-green">23.7x</span></td>
+          <td><span class="val-big val-green">$4.44</span></td>
+          <td><span class="val-big val-green">$10.50</span></td>
+          <td><span class="val-big">47</span></td>
+          <td><span class="verdict-badge v-scale">Scale Now</span></td>
+        </tr>
+        <tr style="background: rgba(74,222,128,0.03);">
+          <td><span class="rank-num">2</span></td>
+          <td><span class="format-chip chip-image">Image</span></td>
+          <td><span class="val-big">$180</span></td>
+          <td><span class="val-big val-green">20.9x</span></td>
+          <td><span class="val-big val-green">$4.49</span></td>
+          <td><span class="val-big val-green">$9.59</span></td>
+          <td><span class="val-big">40</span></td>
+          <td><span class="verdict-badge v-win">Winner</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">3</span></td>
+          <td><span class="format-chip chip-image">Image</span></td>
+          <td><span class="val-big">$245</span></td>
+          <td><span class="val-big val-yellow">15.3x</span></td>
+          <td><span class="val-big val-yellow">$9.08</span></td>
+          <td><span class="val-big val-yellow">$14.43</span></td>
+          <td><span class="val-big">27</span></td>
+          <td><span class="verdict-badge v-mid">Monitor</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">4</span></td>
+          <td><span class="format-chip chip-image">Image</span></td>
+          <td><span class="val-big">$151</span></td>
+          <td><span class="val-big val-yellow">12.7x</span></td>
+          <td><span class="val-big val-yellow">$8.87</span></td>
+          <td><span class="val-big val-yellow">$14.29</span></td>
+          <td><span class="val-big">17</span></td>
+          <td><span class="verdict-badge v-mid">Monitor</span></td>
+        </tr>
+        <tr style="background: rgba(248,113,113,0.03);">
+          <td><span class="rank-num">5</span></td>
+          <td><span class="format-chip chip-image">Image</span></td>
+          <td><span class="val-big">$106</span></td>
+          <td><span class="val-big val-red">9.65x</span></td>
+          <td><span class="val-big val-red">$13.22</span></td>
+          <td><span class="val-big val-red">$12.42</span></td>
+          <td><span class="val-big">8</span></td>
+          <td><span class="verdict-badge v-cut">Review</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider" />
+
+    <!-- TOP PERFORMERS VISUAL -->
+    <div class="section-label">Top Performers</div>
+    <h2 class="section-title">What's Winning</h2>
+    <p class="section-subtitle">The top 2 are pulling away from the field on every metric - ROAS, CPA, and CPM all move together.</p>
+
+    <div class="creative-grid-3">
+
+      <!-- #1 VIDEO -->
+      <div class="creative-card winner">
+        <div class="format-tag format-video">Video</div>
+        <div class="rank-badge rank-gold">1</div>
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline
+            src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d4/video.mp4">
+          </video>
+        </div>
+        <div class="creative-meta">
+          <div class="creative-label">#1 by ROAS - $100+ Spend</div>
+          <div class="metric-row three">
+            <div class="metric-item">
+              <div class="m-label">ROAS</div>
+              <div class="m-value green">23.7x</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPA</div>
+              <div class="m-value green">$4.44</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPM</div>
+              <div class="m-value green">$10.50</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item">
+              <div class="m-label">Spend</div>
+              <div class="m-value">$209</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">Purchases</div>
+              <div class="m-value">47</div>
+            </div>
+          </div>
+          <span class="verdict-badge v-scale">Scale Now</span>
+        </div>
+      </div>
+
+      <!-- #2 IMAGE -->
+      <div class="creative-card winner">
+        <div class="format-tag format-image">Image</div>
+        <div class="rank-badge rank-silver">2</div>
+        <img class="creative-thumb"
+          src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a6d/image.jpg"
+          alt="Top performer #2" loading="lazy" />
+        <div class="creative-meta">
+          <div class="creative-label">#2 by ROAS - $100+ Spend</div>
+          <div class="metric-row three">
+            <div class="metric-item">
+              <div class="m-label">ROAS</div>
+              <div class="m-value green">20.9x</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPA</div>
+              <div class="m-value green">$4.49</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPM</div>
+              <div class="m-value green">$9.59</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item">
+              <div class="m-label">Spend</div>
+              <div class="m-value">$180</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">Purchases</div>
+              <div class="m-value">40</div>
+            </div>
+          </div>
+          <span class="verdict-badge v-win">Winner</span>
+        </div>
+      </div>
+
+      <!-- #3 IMAGE - HIGH SPEND, NOT HIGH ROAS -->
+      <div class="creative-card middle">
+        <div class="format-tag format-image">Image</div>
+        <div class="rank-badge rank-bronze">3</div>
+        <img class="creative-thumb"
+          src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c56d611237eecacf50cd2/image.jpg"
+          alt="Top spender #3 by ROAS" loading="lazy" />
+        <div class="creative-meta">
+          <div class="creative-label">#3 by ROAS - Highest Spend</div>
+          <div class="metric-row three">
+            <div class="metric-item">
+              <div class="m-label">ROAS</div>
+              <div class="m-value yellow">15.3x</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPA</div>
+              <div class="m-value yellow">$9.08</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPM</div>
+              <div class="m-value yellow">$14.43</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item">
+              <div class="m-label">Spend</div>
+              <div class="m-value">$245</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">Purchases</div>
+              <div class="m-value">27</div>
+            </div>
+          </div>
+          <span class="verdict-badge v-mid">Monitor - CPA 2x higher than #1</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- BOTTOM PERFORMERS -->
+    <div class="section-label">Bottom Performers</div>
+    <h2 class="section-title">What Needs Attention</h2>
+    <p class="section-subtitle">The two lowest ROAS creatives with $100+ spend. Both are new image creative - and both are pulling the account average down.</p>
+
+    <div class="creative-grid-2">
+
+      <!-- BOTTOM #1 -->
+      <div class="creative-card loser">
+        <div class="format-tag format-image">Image</div>
+        <div class="rank-badge rank-red">5</div>
+        <img class="creative-thumb"
+          src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c64e611237eecac16a96d/image.jpg"
+          alt="Bottom performer #1" loading="lazy" />
+        <div class="creative-meta">
+          <div class="creative-label">Worst ROAS - $100+ Spend</div>
+          <div class="metric-row three">
+            <div class="metric-item">
+              <div class="m-label">ROAS</div>
+              <div class="m-value red">9.65x</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPA</div>
+              <div class="m-value red">$13.22</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPM</div>
+              <div class="m-value red">$12.42</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item">
+              <div class="m-label">Spend</div>
+              <div class="m-value">$106</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">Purchases</div>
+              <div class="m-value">8</div>
+            </div>
+          </div>
+          <span class="verdict-badge v-cut">Review - $13.22 CPA vs $4.44 winner</span>
+        </div>
+      </div>
+
+      <!-- BOTTOM #2 -->
+      <div class="creative-card loser">
+        <div class="format-tag format-image">Image</div>
+        <div class="rank-badge rank-red">4</div>
+        <img class="creative-thumb"
+          src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c56d611237eecacf50ca2/image.jpg"
+          alt="Bottom performer #2" loading="lazy" />
+        <div class="creative-meta">
+          <div class="creative-label">4th by ROAS - $100+ Spend</div>
+          <div class="metric-row three">
+            <div class="metric-item">
+              <div class="m-label">ROAS</div>
+              <div class="m-value red">12.7x</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPA</div>
+              <div class="m-value yellow">$8.87</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">CPM</div>
+              <div class="m-value yellow">$14.29</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item">
+              <div class="m-label">Spend</div>
+              <div class="m-value">$151</div>
+            </div>
+            <div class="metric-item">
+              <div class="m-label">Purchases</div>
+              <div class="m-value">17</div>
+            </div>
+          </div>
+          <span class="verdict-badge v-cut">Review - High CPM dragging efficiency</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- WHAT'S WORKING -->
+    <div class="section-label">Creative Analysis</div>
+    <h2 class="section-title">What's Working and Why</h2>
+    <p class="section-subtitle">The data tells a clear story when you look at all three metrics together.</p>
+
+    <div class="insight-grid">
+
+      <div class="insight-card">
+        <div class="insight-icon">🎬</div>
+        <div class="insight-title">Video Wins on Every Single Metric</div>
+        <div class="insight-body">
+          The #1 ROAS creative is video - and it's not close. 23.7x ROAS, $4.44 CPA, $10.50 CPM. Compare that to the worst performer: 9.65x ROAS, $13.22 CPA, $12.42 CPM. The video format reaches people cheaper AND converts them more efficiently. That's not a coincidence.
+        </div>
+        <div class="insight-stat">Video #1 CPA: $4.44 vs New image bottom: $13.22</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-icon">📸</div>
+        <div class="insight-title">One Image is Matching Video</div>
+        <div class="insight-body">
+          The #2 creative is an image - 20.9x ROAS, $4.49 CPA, $9.59 CPM. Nearly identical to the video winner. This one belongs to an older creative family that's been tested and proven. It tells us the concept and creative approach is strong, not just the format.
+        </div>
+        <div class="insight-stat">Best image CPM in account: $9.59 - beats most videos</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-icon">⚠️</div>
+        <div class="insight-title">New Batch is Underperforming on CPA</div>
+        <div class="insight-body">
+          The new image batch (launched in the last 3 weeks) is getting the most spend but delivering the worst ROAS and CPA. The highest-spend creative at $245 has a $9.08 CPA - more than double the winner. The worst new image has a $13.22 CPA. These need a hard look before more budget gets routed there.
+        </div>
+        <div class="insight-stat">New image avg CPA: ~$10+ vs proven creative avg: ~$4.50</div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- ITERATION -->
+    <div class="section-label">Iteration Strategy</div>
+    <h2 class="section-title">How We're Moving Forward</h2>
+    <p class="section-subtitle">Concrete next steps tied directly to what the data is showing.</p>
+
+    <div class="iteration-list">
+      <div class="iteration-item">
+        <div class="iteration-num">1</div>
+        <div class="iteration-content">
+          <div class="it-title">Scale the Video Creative</div>
+          <div class="it-body">The #1 ROAS creative is video at $209 spend this week. It has headroom to scale - 23.7x ROAS and $4.44 CPA means we can push more budget here and keep returns strong. Priority is increasing delivery on this asset and building 2-3 video variants off the same concept.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">2</div>
+        <div class="iteration-content">
+          <div class="it-title">Protect the Proven Image Creative</div>
+          <div class="it-body">The #2 image at 20.9x ROAS / $4.49 CPA is a proven winner that matches video performance. Keep this one running and refresh the visual before it fatigues - same concept, new execution. Don't let it die while the new batch is burning budget.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">3</div>
+        <div class="iteration-content">
+          <div class="it-title">Put the Bottom Image on a Performance Watch</div>
+          <div class="it-body">The worst performer ($106 spend, 9.65x ROAS, $13.22 CPA) needs one more week to prove itself or it gets paused. The CPA is 3x worse than the winning creative. At that efficiency gap, continuing to spend here means we're leaving revenue on the table.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">4</div>
+        <div class="iteration-content">
+          <div class="it-title">Interrogate the Highest-Spend Creative</div>
+          <div class="it-body">$245 spent on the #3 ROAS creative this week. It's profitable at 15.3x, but the $9.08 CPA versus $4.44 on the video means we're overpaying per acquisition. We're not saying pause it - we're saying the algorithm should be routing more of that budget to the top 2 performers.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- COMPETITOR SECTION -->
+    <div class="section-label">Competitive Landscape</div>
+    <h2 class="section-title">What Competitors Are Running Right Now</h2>
+    <p class="section-subtitle">Top active creatives from Fabletics, Gymshark, and Oner Active ranked by impression share. All currently live.</p>
+
+    <!-- FABLETICS -->
+    <div class="comp-section">
+      <div class="comp-header">
+        <div class="comp-name">Fabletics</div>
+        <span class="comp-tag tag-scale">High Volume / High Spend</span>
+      </div>
+      <div class="comp-insight">
+        <strong>Format strategy: Image-heavy, high volume testing.</strong> Fabletics just ran a large creative refresh in early July - all top active ads launched July 2-8. They're running multiple image variants simultaneously and leaning on clean product photography. No video in their current top set, which stands out as the rest of the category leans into video. As the spend leader in the space, they're betting on volume to find winners fast.
+        <br><br>
+        <strong>What this means for BuffBunny:</strong> Their approach validates running many variants - but our data shows the CPA gap between good and poor creative is enormous ($4.44 vs $13.22). Volume testing needs to come with fast kill decisions on underperformers.
+      </div>
+      <div class="comp-gallery">
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/2859016097781746/6a48245a708e10d24255f328/275728cc-da21-48d1-ba7f-3f7bce69236e.jpg" alt="Fabletics" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">20 days</span> · Image</div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1015149348159287/6a55ac5669c9b909849cade8/b0393dae-7c84-48cf-a767-cef756741490.jpg" alt="Fabletics" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">15 days</span> · Image</div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/995863859914311/6a55ac5669c9b909849cade9/b8a4a345-8aaf-4f9f-96cb-5d18f7a81d93.jpg" alt="Fabletics" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">15 days</span> · Image</div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1323405812754597/6a48245a708e10d24255f32e/a64bb3b4-bbeb-4b6a-b414-ecb89e4911e1.jpg" alt="Fabletics" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">20 days</span> · Image</div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1554570842708996/6a55ac5669c9b909849cade6/36d7142f-ff7c-4239-8850-b80819865d1e.jpg" alt="Fabletics" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">12 days</span> · Image</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GYMSHARK -->
+    <div class="comp-section">
+      <div class="comp-header">
+        <div class="comp-name">Gymshark</div>
+        <span class="comp-tag tag-watch">Going All-In on Video</span>
+      </div>
+      <div class="comp-insight">
+        <strong>Format strategy: Video-first, running deep.</strong> Gymshark's top impression ads are 4 out of 5 video. Two of those videos have been running 16+ days and are still in their top set - that's a strong signal that the content is finding an audience. They're mixing workout footage with lifestyle and keeping the edit dynamic.
+        <br><br>
+        <strong>What this means for BuffBunny:</strong> Gymshark's video longevity (16+ days in top impressions) is the benchmark. Our top video is spending $209/week - the goal is extending that run time by building variants that keep the concept fresh. A video that stays in the top set for 3+ weeks is a meaningful competitive advantage.
+      </div>
+      <div class="comp-gallery">
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1453972679795035/6a4d4e7b69c9b9098472f2f6/c58fa6a4-cb07-44ba-8a84-f40a8437c359.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">16 days</span> · Video</div>
+        </div>
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1569337624576503/6a4d4e7b69c9b9098472f30d/15c3954d-79a2-494b-b64c-7075f68204f1.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">16 days</span> · Video</div>
+        </div>
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/950989961152549/6a48efe6708e10d242612d3d/4fd64149-90c2-4e5a-bebf-f31d735e0d1b.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">20 days</span> · Video</div>
+        </div>
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/2465879570597776/6a48efe6708e10d242612d2e/39163b54-07c7-453f-ac88-520253467aa7.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">20 days</span> · Video <span style="color:#4ade80">1 save</span></div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1502773614862509/6a48efeb708e10d242613019/13c12f4c-3aaf-4534-9575-ba20e9f7540c.jpg" alt="Gymshark" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">20 days</span> · Image</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ONER -->
+    <div class="comp-section">
+      <div class="comp-header">
+        <div class="comp-name">Oner Active</div>
+        <span class="comp-tag tag-watch">Closest Comp - Video + Carousel</span>
+      </div>
+      <div class="comp-insight">
+        <strong>Format strategy: Video-led with carousel for collections - and it's working long-term.</strong> Oner is running two videos that have been live since May - 60+ days active and still in their top impression set. That level of creative longevity is rare. They're also actively testing fresh video (July launches at 1-12 days) alongside the long-runners, and using carousel format for collection showcasing that's proven out at 48-77 days.
+        <br><br>
+        <strong>What this means for BuffBunny:</strong> Oner's playbook is the most directly applicable. Their video + carousel combination maps well to what BuffBunny could build. Notably, we're not running carousel format at all currently - and Oner's carousels are some of their longest-running creative. Worth testing a product-collection carousel as a direct experiment.
+      </div>
+      <div class="comp-gallery">
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1725062815360002/6a57836e69c9b90984aaeb8e/92d2d097-6bba-41fb-b6aa-86f011958147.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">12 days</span> · Video</div>
+        </div>
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/26540060245696464/6a0f9b6c24084c7ace0b09fb/e12028ae-f461-4700-a2a8-d001d8ccb829.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">63 days</span> · Video <span style="color:#fbbf24">★ Long runner</span></div>
+        </div>
+        <div class="comp-creative">
+          <div class="comp-video-wrap">
+            <video autoplay muted loop playsinline src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1526878418955262/6a0f9b6c24084c7ace0b09fa/250d729c-afd4-47a3-8f40-cd16fcc526e0.mp4"></video>
+          </div>
+          <div class="comp-meta"><span class="comp-days">61 days</span> · Video <span style="color:#fbbf24">★ Long runner</span></div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/879370274475124/6a2365b11e4a1b7b57559746/35c260c0-4ce2-4ad1-ab1c-92f79bb784c0.jpg" alt="Oner Active carousel" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">48 days</span> · Carousel (8 slides)</div>
+        </div>
+        <div class="comp-creative">
+          <img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/831834612807874/69fb54b746012bac5d86b6e6/c5a0ffe7-c7c7-4813-878a-ab31800c085e.jpg" alt="Oner Active carousel" loading="lazy" />
+          <div class="comp-meta"><span class="comp-days">77 days</span> · Carousel (5 slides) <span style="color:#fbbf24">★ Long runner</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL TAKEAWAY -->
+    <div class="takeaway-box">
+      <div class="tb-label">The Bottom Line</div>
+      <p>
+        The account has a proven winner - the video creative at 23.7x ROAS and $4.44 CPA - and competitors are telling the same story. Gymshark and Oner are both leading with video that runs 60+ days. The immediate priority is scaling the winning video, building variants off that concept, and cutting budget to the new image creative that's pulling $13.22 CPA while the winner sits at $4.44.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="f-note">BuffBunny Collection</div>
+      <div class="f-brand">Chamber Media</div>
+    </div>
+  </footer>
+
+</body>
+</html>
