@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>BuffBunny Collection - Creative Insights Report</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111111;
+      --surface2: #181818;
+      --border: #222222;
+      --text: #f0f0f0;
+      --muted: #888888;
+      --accent: #d4a85a;
+      --accent-light: #e8c98a;
+      --green: #4ade80;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --blue: #60a5fa;
+      --purple: #c084fc;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* HEADER */
+    .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 32px 48px; }
+    .header-inner { display: flex; justify-content: space-between; align-items: flex-end; max-width: 1200px; margin: 0 auto; }
+    .header-left h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
+    .header-left .client-tag { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .header-right { text-align: right; }
+    .header-right .date-range { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .header-right .prepared-by { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+    /* MAIN */
+    .main { padding: 40px 48px; max-width: 1200px; margin: 0 auto; }
+
+    /* SECTION HEADERS */
+    .section-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .section-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .section-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+
+    /* DIVIDER */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* KPI SNAPSHOT */
+    .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 40px; }
+    .kpi-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; }
+    .kpi-card .kpi-label { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; }
+    .kpi-card .kpi-value { font-size: 26px; font-weight: 800; letter-spacing: -1px; color: var(--text); margin-bottom: 4px; }
+    .kpi-card .kpi-sub { font-size: 11px; color: var(--muted); }
+    .kpi-card.green-border { border-left: 3px solid var(--green); }
+    .kpi-card.accent-border { border-left: 3px solid var(--accent); }
+    .kpi-card.red-border { border-left: 3px solid var(--red); }
+
+    /* ALERT BANNER */
+    .alert-banner { background: rgba(251, 191, 36, 0.06); border: 1px solid rgba(251, 191, 36, 0.25); border-radius: 10px; padding: 16px 20px; margin-bottom: 32px; font-size: 13px; color: #fde68a; line-height: 1.7; }
+    .alert-banner strong { color: #fbbf24; }
+
+    /* CREATIVE GRID */
+    .creative-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .creative-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+    .creative-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; }
+    .creative-card.winner { border-color: rgba(74, 222, 128, 0.35); }
+    .creative-card.loser  { border-color: rgba(248, 113, 113, 0.25); }
+    .creative-card.middle { border-color: rgba(251, 191, 36, 0.25); }
+
+    .creative-thumb-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--surface2), var(--surface)); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-align: center; padding: 12px; }
+
+    .format-tag { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; }
+    .format-video  { background: rgba(96,165,250,0.9); color:#fff; }
+    .format-image  { background: rgba(0,0,0,0.65); color:#fff; }
+
+    .rank-badge { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; z-index: 2; }
+    .rank-gold   { background: #d4a85a; color: #000; }
+    .rank-silver { background: #888; color: #fff; }
+    .rank-bronze { background: #6b4423; color: #fff; }
+    .rank-red    { background: rgba(248,113,113,0.9); color: #fff; }
+
+    .creative-meta { padding: 16px; }
+    .creative-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; }
+
+    .metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .metric-row.three { grid-template-columns: 1fr 1fr 1fr; }
+
+    .metric-item .m-label { font-size: 10px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px; }
+    .metric-item .m-value { font-size: 16px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+    .metric-item .m-value.green { color: var(--green); }
+    .metric-item .m-value.yellow { color: var(--yellow); }
+    .metric-item .m-value.red { color: var(--red); }
+
+    .verdict-badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 6px; }
+    .v-win    { background: rgba(74,222,128,0.15); color: var(--green); }
+    .v-mid    { background: rgba(251,191,36,0.12); color: var(--yellow); }
+    .v-cut    { background: rgba(248,113,113,0.12); color: var(--red); }
+    .v-scale  { background: rgba(96,165,250,0.12); color: var(--blue); }
+
+    /* INSIGHT CARDS */
+    .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .insight-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+    .insight-card.flag { border-color: rgba(248,113,113,0.25); }
+    .insight-card .insight-icon { font-size: 22px; margin-bottom: 12px; }
+    .insight-card .insight-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .insight-card .insight-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .insight-card .insight-stat { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; font-weight: 600; color: var(--accent); }
+    .insight-card.flag .insight-stat { color: var(--red); }
+
+    /* ITERATION */
+    .iteration-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .iteration-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .iteration-num { width: 28px; height: 28px; min-width: 28px; background: var(--accent); color: #000; font-size: 12px; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .iteration-content .it-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .iteration-content .it-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* NEEDS LIST */
+    .needs-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .needs-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 22px; }
+    .needs-item .need-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .needs-item .need-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+    /* COMPETITOR SECTION */
+    .comp-section { margin-bottom: 44px; }
+    .comp-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .comp-name { font-size: 17px; font-weight: 700; color: var(--text); }
+    .comp-tag { padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    .tag-scale { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+    .tag-watch { background: rgba(251,191,36,0.12);  color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+    .comp-insight { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .comp-insight strong { color: var(--text); }
+    .comp-gallery { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+    .comp-creative { border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); position: relative; }
+    .comp-thumb { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--surface2); }
+    .comp-meta { padding: 8px 10px; font-size: 10px; color: var(--muted); font-weight: 600; }
+
+    /* TAKEAWAY */
+    .takeaway-box { background: rgba(212,168,90,0.06); border: 1px solid rgba(212,168,90,0.2); border-radius: 10px; padding: 24px 28px; margin-top: 28px; }
+    .takeaway-box .tb-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .takeaway-box p { font-size: 14px; color: var(--text); line-height: 1.8; }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--border); padding: 24px 48px; margin-top: 60px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .footer .f-note { font-size: 11px; color: var(--muted); }
+    .footer .f-brand { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; font-size: 13px; }
+    .compare-table th { text-align: left; padding: 10px 16px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .compare-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .rank-num { font-size: 13px; font-weight: 800; color: var(--muted); }
+    .compare-table .val-big { font-size: 15px; font-weight: 800; color: var(--text); }
+    .compare-table .val-green { color: var(--green); }
+    .compare-table .val-yellow { color: var(--yellow); }
+    .compare-table .val-red { color: var(--red); }
+    .compare-table .format-chip { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+    .chip-video { background: rgba(96,165,250,0.15); color: var(--blue); }
+    .chip-image { background: rgba(212,168,90,0.12); color: var(--accent); }
+
+    /* WEEK NAV */
+    .week-nav { margin-top: 10px; }
+    .week-nav-link { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--accent); text-decoration: none; background: rgba(212,168,90,0.08); border: 1px solid rgba(212,168,90,0.25); border-radius: 20px; padding: 5px 12px; transition: background 0.15s ease, border-color 0.15s ease; }
+    .week-nav-link:hover { background: rgba(212,168,90,0.16); border-color: rgba(212,168,90,0.4); }
+
+    /* PASSWORD GATE */
+    #pwGate { display: none; }
+    body.pw-locked #pwGate { display: flex; }
+    body.pw-locked > *:not(#pwGate) { visibility: hidden; }
+    .pw-gate { position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center; padding: 24px; background: radial-gradient(circle at 50% 38%, rgba(212,168,90,0.14), transparent 60%), var(--bg); font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; opacity: 1; transition: opacity 0.32s ease, transform 0.32s ease; }
+    .pw-gate.pw-unlocking { opacity: 0; transform: scale(0.97); }
+    .pw-card { position: relative; width: 100%; max-width: 380px; background: linear-gradient(180deg, var(--surface2), var(--surface)); border: 1px solid rgba(212,168,90,0.18); border-radius: 18px; padding: 40px 36px 32px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.02) inset; }
+    .pw-mark { width: 44px; height: 44px; margin: 0 auto 20px; border-radius: 12px; background: linear-gradient(135deg, var(--accent-light), var(--accent)); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(212,168,90,0.25); }
+    .pw-mark svg { width: 20px; height: 20px; }
+    .pw-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .pw-title { font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; margin-bottom: 10px; }
+    .pw-sub { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 26px; }
+    .pw-field { margin-bottom: 14px; }
+    .pw-field input { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; font-family: inherit; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+    .pw-field input::placeholder { color: #555; }
+    .pw-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,168,90,0.15); }
+    .pw-btn { width: 100%; padding: 12px 14px; border: none; border-radius: 10px; background: linear-gradient(135deg, var(--accent-light), var(--accent)); color: #1a1305; font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; transition: transform 0.12s ease, box-shadow 0.12s ease; box-shadow: 0 8px 20px rgba(212,168,90,0.2); }
+    .pw-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(212,168,90,0.3); }
+    .pw-btn:active { transform: translateY(0); }
+    .pw-error { display: none; margin-top: 14px; font-size: 12px; color: var(--red); }
+    .pw-foot { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border); font-size: 10.5px; color: #555; letter-spacing: 0.3px; }
+    @keyframes pwShake { 10%, 90% { transform: translateX(-1px); } 20%, 80% { transform: translateX(2px); } 30%, 50%, 70% { transform: translateX(-4px); } 40%, 60% { transform: translateX(4px); } }
+    .pw-shake { animation: pwShake 0.4s ease; }
+
+    @media (max-width: 900px) {
+      .kpi-grid { grid-template-columns: repeat(2,1fr); }
+      .creative-grid-3, .creative-grid-2 { grid-template-columns: 1fr; }
+      .insight-grid { grid-template-columns: 1fr; }
+      .iteration-list, .needs-list { grid-template-columns: 1fr; }
+      .comp-gallery { grid-template-columns: repeat(3,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+(function(){
+  var unlocked = false;
+  try { unlocked = sessionStorage.getItem('bbUnlocked') === '1'; } catch(e){}
+  if (!unlocked) { document.body.classList.add('pw-locked'); }
+})();
+</script>
+
+<div id="pwGate" class="pw-gate">
+  <div class="pw-card">
+    <div class="pw-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10V8a6 6 0 1112 0v2" stroke="#1a1305" stroke-width="2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="11" rx="3" fill="#1a1305"/></svg>
+    </div>
+    <div class="pw-eyebrow">BuffBunny Collection</div>
+    <div class="pw-title">Creative Insights Report</div>
+    <p class="pw-sub">This report is password protected.<br>Enter the access code to continue.</p>
+    <div class="pw-field">
+      <input id="pwInput" type="password" placeholder="Enter password" autocomplete="off" onkeydown="if(event.keyCode===13)checkPw()" />
+    </div>
+    <button class="pw-btn" onclick="checkPw()">View Report</button>
+    <div id="pwError" class="pw-error">Incorrect password, please try again.</div>
+    <div class="pw-foot">Chamber Media &middot; Confidential</div>
+  </div>
+</div>
+
+<script>
+function checkPw(){
+  var val = document.getElementById('pwInput').value;
+  if (val === 'BBInsights') {
+    try { sessionStorage.setItem('bbUnlocked','1'); } catch(e){}
+    var gate = document.getElementById('pwGate');
+    gate.classList.add('pw-unlocking');
+    setTimeout(function(){
+      document.body.classList.remove('pw-locked');
+    }, 320);
+  } else {
+    var card = document.querySelector('.pw-card');
+    card.classList.remove('pw-shake');
+    void card.offsetWidth;
+    card.classList.add('pw-shake');
+    document.getElementById('pwError').style.display = 'block';
+  }
+}
+</script>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="client-tag">Client Report</div>
+        <h1>BuffBunny Collection - Creative Insights</h1>
+        <div class="week-nav">
+          <a class="week-nav-link" href="https://ellavern.github.io/EllaChamber/buffbunny-aug13-26/">&larr; Last report (Aug 13 to 26)</a>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="date-range">September 2 - September 15, 2026</div>
+        <div class="prepared-by">Prepared by Chamber Media</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <!-- ACCOUNT SNAPSHOT -->
+    <div class="section-label">Account Snapshot</div>
+    <h2 class="section-title">Last 14 Days at a Glance</h2>
+    <p class="section-subtitle">Pulled across every Meta creative in the window and checked against Braden's weekly report so the two line up.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card accent-border">
+        <div class="kpi-label">Meta Spend</div>
+        <div class="kpi-value">$15,267</div>
+        <div class="kpi-sub">Last 14 days across 35 creatives</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Return on Ad Spend</div>
+        <div class="kpi-value">10.16x</div>
+        <div class="kpi-sub">Purchase value divided by total spend</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Purchase Value</div>
+        <div class="kpi-value">$155,151</div>
+        <div class="kpi-sub">Total attributed revenue in window</div>
+      </div>
+      <div class="kpi-card green-border">
+        <div class="kpi-label">Purchases</div>
+        <div class="kpi-value">1,100</div>
+        <div class="kpi-sub">Total conversions across all creatives</div>
+      </div>
+      <div class="kpi-card red-border">
+        <div class="kpi-label">Cold Prospecting Return</div>
+        <div class="kpi-value">2.59x</div>
+        <div class="kpi-sub">Evergreen | Message Test | US, $4,548 spend</div>
+      </div>
+    </div>
+
+    <!-- ALERT -->
+    <div class="alert-banner">
+      <strong>Key finding:</strong> Cold prospecting took 29.8% of the spend this window and only brought back 7.6% of the purchase value, blending to 2.59x. Warm retargeting is returning 13.57x. Braden landed on the same conclusion in his weekly report, which is why cold spend is already getting cut back.
+    </div>
+
+    <!-- TOP PERFORMERS TABLE -->
+    <div class="section-label">Performance Ranked</div>
+    <h2 class="section-title">Top 5 by Purchase Value</h2>
+    <p class="section-subtitle">Ranked by total purchase value across the 14 days. Every one of these sits in a warm, retargeting campaign.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Creative</th>
+          <th>Campaign</th>
+          <th>Format</th>
+          <th>Spend</th>
+          <th>Return</th>
+          <th>CPA</th>
+          <th>Purchases</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(74,222,128,0.04);">
+          <td><span class="rank-num">1</span></td>
+          <td>Summer Essentials - DB Summer 3 (Static)</td>
+          <td>Essentials Launches</td>
+          <td><span class="format-chip chip-image">Static</span></td>
+          <td><span class="val-big">$1,531</span></td>
+          <td><span class="val-big val-green">13.64x</span></td>
+          <td><span class="val-big val-green">$10.27</span></td>
+          <td><span class="val-big">149</span></td>
+        </tr>
+        <tr style="background: rgba(74,222,128,0.03);">
+          <td><span class="rank-num">2</span></td>
+          <td>Summer Essentials - Vid 3</td>
+          <td>Essentials Launches</td>
+          <td><span class="format-chip chip-video">Video</span></td>
+          <td><span class="val-big">$1,121</span></td>
+          <td><span class="val-big val-green">18.01x</span></td>
+          <td><span class="val-big val-green">$7.79</span></td>
+          <td><span class="val-big">144</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">3</span></td>
+          <td>HGS Static 4</td>
+          <td>Hot Girl Summer</td>
+          <td><span class="format-chip chip-image">Static</span></td>
+          <td><span class="val-big">$1,394</span></td>
+          <td><span class="val-big val-green">11.39x</span></td>
+          <td><span class="val-big val-green">$13.67</span></td>
+          <td><span class="val-big">102</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">4</span></td>
+          <td>Summer Essentials - Vid 1</td>
+          <td>Essentials Launches</td>
+          <td><span class="format-chip chip-video">Video</span></td>
+          <td><span class="val-big">$858</span></td>
+          <td><span class="val-big val-green">13.55x</span></td>
+          <td><span class="val-big val-green">$8.85</span></td>
+          <td><span class="val-big">97</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">5</span></td>
+          <td>Summer Essentials - DB Summer 1 (Static) - Copy 2</td>
+          <td>Essentials Launches</td>
+          <td><span class="format-chip chip-image">Static</span></td>
+          <td><span class="val-big">$605</span></td>
+          <td><span class="val-big val-green">16.06x</span></td>
+          <td><span class="val-big val-green">$8.65</span></td>
+          <td><span class="val-big">70</span></td>
+        </tr>
+        <tr style="background: rgba(96,165,250,0.03);">
+          <td><span class="rank-num">Efficiency Leader</span></td>
+          <td>HGS Static 13</td>
+          <td>Hot Girl Summer</td>
+          <td><span class="format-chip chip-image">Static</span></td>
+          <td><span class="val-big">$448</span></td>
+          <td><span class="val-big val-green">16.16x</span></td>
+          <td><span class="val-big val-green">$12.10</span></td>
+          <td><span class="val-big">37</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider" />
+
+    <!-- TOP PERFORMERS VISUAL -->
+    <div class="section-label">What's Working</div>
+    <h2 class="section-title">The Ads Carrying the Account</h2>
+    <p class="section-subtitle">Three statics and two videos make up the top five, plus HGS Static 13 as the smallest spend standout. Warm audiences, not format, are what separate this group from the rest of the account.</p>
+
+    <div class="creative-grid-3">
+
+      <div class="creative-card winner">
+        <div class="format-tag format-image">Static</div>
+        <div class="rank-badge rank-gold">1</div>
+        <div class="creative-thumb-placeholder">Summer Essentials<br>DB Summer 3</div>
+        <div class="creative-meta">
+          <div class="creative-label">#1 &middot; Revenue Leader</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">13.64x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$10.27</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">1.14%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$1,531</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">149</div></div>
+          </div>
+          <span class="verdict-badge v-win">Winner, keep funded</span>
+        </div>
+      </div>
+
+      <div class="creative-card winner">
+        <div class="format-tag format-video">Video</div>
+        <div class="rank-badge rank-silver">2</div>
+        <div class="creative-thumb-placeholder">Summer Essentials<br>Vid 3</div>
+        <div class="creative-meta">
+          <div class="creative-label">#2 &middot; Best Return in the Top 5</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">18.01x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$7.79</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">0.84%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$1,121</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">144</div></div>
+          </div>
+          <span class="verdict-badge v-scale">Scale Now</span>
+        </div>
+      </div>
+
+      <div class="creative-card winner">
+        <div class="format-tag format-image">Static</div>
+        <div class="rank-badge rank-bronze">3</div>
+        <div class="creative-thumb-placeholder">HGS Static 4</div>
+        <div class="creative-meta">
+          <div class="creative-label">#3 &middot; Winner</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">11.39x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$13.67</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">1.36%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$1,394</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">102</div></div>
+          </div>
+          <span class="verdict-badge v-win">Winner</span>
+        </div>
+      </div>
+
+      <div class="creative-card winner">
+        <div class="format-tag format-video">Video</div>
+        <div class="rank-badge" style="background:var(--blue);color:#fff;">4</div>
+        <div class="creative-thumb-placeholder">Summer Essentials<br>Vid 1</div>
+        <div class="creative-meta">
+          <div class="creative-label">#4 &middot; Winner</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">13.55x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$8.85</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">0.66%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$858</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">97</div></div>
+          </div>
+          <span class="verdict-badge v-win">Winner</span>
+        </div>
+      </div>
+
+      <div class="creative-card winner">
+        <div class="format-tag format-image">Static</div>
+        <div class="rank-badge" style="background:var(--purple);color:#fff;">5</div>
+        <div class="creative-thumb-placeholder">Summer Essentials<br>DB Summer 1, Copy 2</div>
+        <div class="creative-meta">
+          <div class="creative-label">#5 &middot; Winner</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">16.06x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$8.65</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">0.65%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$605</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">70</div></div>
+          </div>
+          <span class="verdict-badge v-win">Winner</span>
+        </div>
+      </div>
+
+      <div class="creative-card winner">
+        <div class="format-tag format-image">Static</div>
+        <div class="rank-badge" style="background:var(--green);color:#000;">&#9733;</div>
+        <div class="creative-thumb-placeholder">HGS Static 13</div>
+        <div class="creative-meta">
+          <div class="creative-label">Efficiency Leader</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">16.16x</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$12.10</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">1.09%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$448</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">37</div></div>
+          </div>
+          <span class="verdict-badge v-scale">Best return per dollar, still under funded</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- LOWEST PERFORMERS -->
+    <div class="section-label">What's Not Working</div>
+    <h2 class="section-title">Lowest Return This Window</h2>
+    <p class="section-subtitle">The six creatives with the lowest return at meaningful spend, over $30. Every one is a cold prospecting message test from the Evergreen campaign. Not one warm ad shows up here.</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Creative</th>
+          <th>Campaign</th>
+          <th>Spend</th>
+          <th>Return</th>
+          <th>CPA</th>
+          <th>Purchases</th>
+          <th>Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(248,113,113,0.04);">
+          <td><span class="rank-num">1</span></td>
+          <td>EG | Cold | Your New Go-To Set</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$218</span></td>
+          <td><span class="val-big val-red">1.75x</span></td>
+          <td><span class="val-big val-red">$109.25</span></td>
+          <td><span class="val-big">2</span></td>
+          <td><span class="verdict-badge v-cut">Cut</span></td>
+        </tr>
+        <tr style="background: rgba(248,113,113,0.035);">
+          <td><span class="rank-num">2</span></td>
+          <td>EG | Cold | Move Freely No Restrictions</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$1,966</span></td>
+          <td><span class="val-big val-red">2.01x</span></td>
+          <td><span class="val-big val-red">$78.65</span></td>
+          <td><span class="val-big">25</span></td>
+          <td><span class="verdict-badge v-cut">Cut, biggest ad spend in the account</span></td>
+        </tr>
+        <tr style="background: rgba(248,113,113,0.03);">
+          <td><span class="rank-num">3</span></td>
+          <td>EG | Cold | Squat-Tested Never Sheer</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$529</span></td>
+          <td><span class="val-big val-red">2.55x</span></td>
+          <td><span class="val-big val-red">$88.14</span></td>
+          <td><span class="val-big">6</span></td>
+          <td><span class="verdict-badge v-cut">Cut</span></td>
+        </tr>
+        <tr style="background: rgba(248,113,113,0.02);">
+          <td><span class="rank-num">4</span></td>
+          <td>EG | Cold | Built From Real Bodies</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$839</span></td>
+          <td><span class="val-big val-yellow">2.56x</span></td>
+          <td><span class="val-big val-yellow">$76.24</span></td>
+          <td><span class="val-big">11</span></td>
+          <td><span class="verdict-badge v-mid">Ready for a decision</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">5</span></td>
+          <td>EG | Cold | Sets That Go The Distance</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$928</span></td>
+          <td><span class="val-big val-yellow">3.79x</span></td>
+          <td><span class="val-big val-yellow">$34.35</span></td>
+          <td><span class="val-big">27</span></td>
+          <td><span class="verdict-badge v-mid">Already paused</span></td>
+        </tr>
+        <tr>
+          <td><span class="rank-num">6</span></td>
+          <td>EG | Cold | Built For Every Day</td>
+          <td>Evergreen | Message Test | US</td>
+          <td><span class="val-big">$61</span></td>
+          <td><span class="val-big val-yellow">5.89x</span></td>
+          <td><span class="val-big val-yellow">$20.27</span></td>
+          <td><span class="val-big">3</span></td>
+          <td><span class="verdict-badge v-mid">Watching</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="section-divider" />
+
+    <!-- WHAT'S WORKING, AND WHY -->
+    <div class="section-label">Creative Analysis</div>
+    <h2 class="section-title">What's Working, and Why</h2>
+    <p class="section-subtitle">The winners have one thing in common: warm audience, not a specific format.</p>
+
+    <div class="insight-grid">
+
+      <div class="insight-card">
+        <div class="insight-icon">&#127919;</div>
+        <div class="insight-title">Warm audiences are carrying the account</div>
+        <div class="insight-body">
+          Essentials Launches returned 14.36x on $6,761. Hot Girl Summer returned 12.16x on $3,806. Both are retargeting people who already know the brand. Together they drove 92.4% of the purchase value on 70.2% of the spend.
+        </div>
+        <div class="insight-stat">Combined warm campaign return: 13.57x</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-icon">&#127916;</div>
+        <div class="insight-title">Format isn't the win, once you control for audience</div>
+        <div class="insight-body">
+          Inside warm campaigns only, statics returned 13.39x and video returned 13.91x. Basically a tie. The account is winning because the message lands with people who already know BuffBunny, not because of a specific format.
+        </div>
+        <div class="insight-stat">Static 13.39x, video 13.91x, warm campaigns only</div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-icon">&#128176;</div>
+        <div class="insight-title">HGS Static 13 could handle more budget</div>
+        <div class="insight-body">
+          16.16x over the full 14 days on just $448 in spend. This week alone it also had the strongest click-earned return of any ad above $150. Two separate reads say the same thing: give it more room.
+        </div>
+        <div class="insight-stat">16.16x over 14 days, 11.21x this week</div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- WHAT'S NOT WORKING, AND WHY -->
+    <div class="section-label">Creative Analysis</div>
+    <h2 class="section-title">What's Not Working, and Why</h2>
+    <p class="section-subtitle">Cold prospecting has had two full weeks to prove itself. It answered the question.</p>
+
+    <div class="insight-grid">
+
+      <div class="insight-card flag">
+        <div class="insight-icon">&#128721;</div>
+        <div class="insight-title">Cold prospecting isn't landing with people who don't know us yet</div>
+        <div class="insight-body">
+          Every ad in the Evergreen campaign sits at the bottom of the account. It took 29.8% of spend for 7.6% of the purchase value, blending to 2.59x against 13.57x on warm campaigns. Not a one week dip. Braden reached the same conclusion in his own weekly report, working from a different window.
+        </div>
+        <div class="insight-stat">Cold 2.59x on $4,548, warm 13.57x on $10,567</div>
+      </div>
+
+      <div class="insight-card flag">
+        <div class="insight-icon">&#128184;</div>
+        <div class="insight-title">Our biggest ad spend is also one of our weakest</div>
+        <div class="insight-body">
+          "EG | Cold | Move Freely No Restrictions" spent $1,966, more than any other ad in the window, and returned 2.01x. It's the clearest place to pull budget from right now.
+        </div>
+        <div class="insight-stat">$1,966 spend, 2.01x return, 25 purchases</div>
+      </div>
+
+      <div class="insight-card flag">
+        <div class="insight-icon">&#8987;</div>
+        <div class="insight-title">A few of these have already run their course</div>
+        <div class="insight-body">
+          Two of the six lowest performers are already paused in the account, and a third had zero orders this week per Braden's report. The budget left in cold is mostly sitting on ads that already told us what they had to tell us.
+        </div>
+        <div class="insight-stat">3 of 6 lowest performers are stopped or stopping</div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- SO WHAT -->
+    <div class="section-label">So What</div>
+    <h2 class="section-title">What This Means</h2>
+    <p class="section-subtitle">Braden's weekly numbers and this 14 day creative pull land on the same read. That's what makes the next move confident, not reactive.</p>
+
+    <div class="takeaway-box" style="margin-top: 0; margin-bottom: 40px;">
+      <p>
+        Warm audience creative is working, and it isn't picky about format. Cold prospecting is not working, and it's not a format problem either. It's a message problem. So the plan is simple: keep feeding the proven warm templates, pull the budget cold is wasting, and use it to fund a real fix on the cold side instead of just spending less on the same ads.
+      </p>
+    </div>
+
+    <!-- CREATIVE NEEDS -->
+    <div class="section-label">Production Plan</div>
+    <h2 class="section-title">Creative Needs</h2>
+    <p class="section-subtitle">What we're building next on our end, and the raw content from you that would let us build even more.</p>
+
+    <div class="section-label" style="margin-top: 4px;">What We're Making</div>
+    <p class="section-subtitle">Built off the templates that are already proven, plus a real fix for cold instead of just a smaller budget.</p>
+
+    <div class="iteration-list">
+      <div class="iteration-item">
+        <div class="iteration-num">1</div>
+        <div class="iteration-content">
+          <div class="it-title">New statics on the DB Summer 3 / HGS Static 4 template</div>
+          <div class="it-body">Product front and center, plain background, one direct claim in the headline. Same structure that's driving the top of the account. We just need to point it at the fall colors and new SKUs.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">2</div>
+        <div class="iteration-content">
+          <div class="it-title">Motion graphics cuts of the top claim lines</div>
+          <div class="it-body">Vid 1 and Vid 3 are winning on fast text stacking over movement. We can build cheaper motion graphics versions of that same structure, animated text over product stills, so we're not waiting on a full shoot to test new claims.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">3</div>
+        <div class="iteration-content">
+          <div class="it-title">A real fix for cold, not just a smaller budget</div>
+          <div class="it-body">New cold statics and a motion graphics cut testing a provable claim headline, something like "no pilling after 50 washes," instead of the aspirational lines that are underperforming now. This is the actual test, budget cuts alone don't fix the message.</div>
+        </div>
+      </div>
+      <div class="iteration-item">
+        <div class="iteration-num">4</div>
+        <div class="iteration-content">
+          <div class="it-title">Placement-specific cuts for Reels overlay and Audience Network</div>
+          <div class="it-body">Both are running the same creative as everywhere else right now, but they're the cheapest, highest-return slots in the account this week. Worth a version sized and cropped for those placements specifically before we put real budget behind them.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top: 36px;">Ads We'd Love From You</div>
+    <p class="section-subtitle">Real, natural footage from your side turns into some of our best-performing ads. The more of this you can send over, the more we can put into testing.</p>
+
+    <div class="needs-list">
+      <div class="needs-item">
+        <div class="need-title">Get ready with me videos in BuffBunny sets</div>
+        <div class="need-body">A quick GRWM clip, throwing on a set and heading out, is a natural hook and a natural outfit reveal in one. This format is doing well across the category and we don't have any of our own to test yet.</div>
+      </div>
+      <div class="needs-item">
+        <div class="need-title">Gym and workout footage actually wearing the gear</div>
+        <div class="need-body">Squats, a run, a class, doesn't need to be produced or even shot on a real camera. This is the raw material behind the video template that's already winning, so more of it means more tests without waiting on a shoot.</div>
+      </div>
+      <div class="needs-item">
+        <div class="need-title">Styling or try-on style clips</div>
+        <div class="need-body">Someone showing how they'd wear a set, mixing pieces, styling it for the gym versus running errands. Good source for new statics and a different angle than the straight product shot.</div>
+      </div>
+      <div class="needs-item">
+        <div class="need-title">Real customer footage or reviews on durability</div>
+        <div class="need-body">The claim angle we want to test on cold, "no pilling," "holds up wash after wash," lands harder with a real customer saying it on camera. Any UGC, reviews, or testimonials backing that up go straight into the new batch.</div>
+      </div>
+      <div class="needs-item">
+        <div class="need-title">Fresh product shots for the fall line</div>
+        <div class="need-body">We're stretching the Summer Essentials assets into September. New photography of the fall colors and new SKUs lets us build the next static batch on the winning template right away instead of reusing summer shots.</div>
+      </div>
+      <div class="needs-item">
+        <div class="need-title">Sign off on how far we can push the claim language</div>
+        <div class="need-body">Before we put money behind a "no pilling after 50 washes" style headline on cold, we want your green light on the claim itself so it doesn't stall once it's already in market.</div>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- COMPETITOR SECTION -->
+    <div class="section-label">Competitive Landscape</div>
+    <h2 class="section-title">What Competitors Are Running Right Now</h2>
+    <p class="section-subtitle">A snapshot of live creative from two brands on the watchlist. This is what's currently in market, not performance data, ad libraries don't expose competitor spend or return. Alphalete left out of this pull by request.</p>
+
+    <!-- GYMSHARK -->
+    <div class="comp-section">
+      <div class="comp-header">
+        <div class="comp-name">Gymshark</div>
+        <span class="comp-tag tag-watch">Direct Competitor</span>
+      </div>
+      <div class="comp-insight">
+        <strong>What's running right now.</strong> A push of fast-cut sale videos (try-on cuts, montage, cinematic b-roll) for a Last Chance promo, alongside simple one-line-headline statics for evergreen lines like their Vital collection and running range.
+        <br><br>
+        <strong>What this means for us.</strong> Their evergreen statics use the same structure that's winning in our account, one product, one direct headline. Worth stealing the try-on and montage cutting style for the motion graphics batch we're already planning.
+      </div>
+      <div class="comp-gallery">
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1797215574800432/6aaa2ba1fce96c9e2573c373/544f0617-f7af-4d70-8641-8ca1b7aca76e.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Video, Montage</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1825959595063637/6aaa2ba1fce96c9e2573c372/c5154694-ebe8-4f50-a307-e2e9af3a62d4.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Video, Try-On</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1120599563831970/6aaa2ba1fce96c9e2573c370/6eed2745-3492-45ab-bdbe-a8721fb959f7.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Video, Slideshow</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1392960799041181/6aaa2ba1fce96c9e2573c36d/fe640efa-0bdb-40fc-b6bb-fe7127f3c092.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Image, Offer Banner</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1547023963368030/6aa8d4eafce96c9e256a43b2/9a126423-948c-4a72-bc48-0e5e349d428f.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Image, Headline</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1430116069220574/6aa8d4eafce96c9e256a43ab/d43725b1-9d4f-4495-89a1-ab58a1c4eaa8.jpg" alt="Gymshark" loading="lazy" /><div class="comp-meta">Image, Headline</div></div>
+      </div>
+    </div>
+
+    <!-- ONER ACTIVE -->
+    <div class="comp-section">
+      <div class="comp-header">
+        <div class="comp-name">Oner Active</div>
+        <span class="comp-tag tag-scale">Closest Comp</span>
+      </div>
+      <div class="comp-insight">
+        <strong>What's running right now.</strong> About half clean product and colorway statics, but the other half are tagged as UGC Selfie, real people, real phone-shot energy, running as actual paid creative, not just organic posts.
+        <br><br>
+        <strong>What this means for us.</strong> This is the best proof we have that raw customer content works at our size. A close peer is already paying to run selfie-style UGC, which backs up the GRWM and gym footage ask above. It's not a guess, it's already working for someone our size.
+      </div>
+      <div class="comp-gallery">
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1069851619085839/6aa8f689fce96c9e256ba5d1/fb56038d-b71f-40f2-aa1c-e8c7be8a2508.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, Product</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/917552894379916/6aa8f689fce96c9e256ba5cf/78e933df-3701-45a3-aa2a-4986d11edb8b.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, Headline</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1871318884235357/6aa8f689fce96c9e256ba5d2/4815b2a8-0880-401f-8a9a-e33a62e390df.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, Headline</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/27673780785657452/6aa8f689fce96c9e256ba5ce/c2ff0757-88ef-4cf4-9008-e89d48da1143.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, Graphic Overlay</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/2258310144901767/6aa8f689fce96c9e256ba5c6/7d48e713-1c1b-4ca4-a213-ccf854c1e8cb.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, Product</div></div>
+        <div class="comp-creative"><img class="comp-thumb" src="https://motionswipefile.blob.core.windows.net/swipe-file-cached-links/swipe-file-source-link/1671632671639325/6aa8f689fce96c9e256ba5c4/bcc2ac28-c835-4e09-aa78-fc5591f7dfc5.jpg" alt="Oner Active" loading="lazy" /><div class="comp-meta">Image, UGC Selfie</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="f-note">BuffBunny Collection &middot; September 2 - September 15, 2026</div>
+      <div class="f-brand">Chamber Media</div>
+    </div>
+  </footer>
+
+</body>
+</html>
