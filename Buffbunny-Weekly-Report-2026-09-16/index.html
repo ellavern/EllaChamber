@@ -70,7 +70,8 @@
     .alert-banner strong { color: #fbbf24; }
 
     /* CREATIVE GRID */
-    .creative-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .creative-grid-3 { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .creative-grid-3 > .creative-card { flex: 1 1 calc((100% - 40px) / 3); min-width: 280px; }
     .creative-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
     .creative-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: relative; }
@@ -79,6 +80,10 @@
     .creative-card.middle { border-color: rgba(251, 191, 36, 0.25); }
 
     .creative-thumb-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--surface2), var(--surface)); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; text-align: center; padding: 12px; }
+
+    .creative-thumb-media { width: 100%; aspect-ratio: 16/9; background: #000; overflow: hidden; }
+    .creative-thumb-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .creative-thumb-media video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
 
     .format-tag { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; z-index: 2; }
     .format-video  { background: rgba(96,165,250,0.9); color:#fff; }
@@ -107,6 +112,7 @@
     .v-mid    { background: rgba(251,191,36,0.12); color: var(--yellow); }
     .v-cut    { background: rgba(248,113,113,0.12); color: var(--red); }
     .v-scale  { background: rgba(96,165,250,0.12); color: var(--blue); }
+    .v-neutral{ background: rgba(255,255,255,0.06); color: var(--muted); }
 
     /* INSIGHT CARDS */
     .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -201,7 +207,8 @@
 
     @media (max-width: 900px) {
       .kpi-grid { grid-template-columns: repeat(2,1fr); }
-      .creative-grid-3, .creative-grid-2 { grid-template-columns: 1fr; }
+      .creative-grid-3 > .creative-card { flex-basis: 100%; }
+      .creative-grid-2 { grid-template-columns: 1fr; }
       .insight-grid { grid-template-columns: 1fr; }
       .iteration-list, .needs-list { grid-template-columns: 1fr; }
       .comp-gallery { grid-template-columns: repeat(3,1fr); }
@@ -381,16 +388,6 @@ function checkPw(){
           <td><span class="val-big val-green">$8.65</span></td>
           <td><span class="val-big">70</span></td>
         </tr>
-        <tr style="background: rgba(96,165,250,0.03);">
-          <td><span class="rank-num">Efficiency Leader</span></td>
-          <td>HGS Static 13</td>
-          <td>Hot Girl Summer</td>
-          <td><span class="format-chip chip-image">Static</span></td>
-          <td><span class="val-big">$448</span></td>
-          <td><span class="val-big val-green">16.16x</span></td>
-          <td><span class="val-big val-green">$12.10</span></td>
-          <td><span class="val-big">37</span></td>
-        </tr>
       </tbody>
     </table>
 
@@ -399,14 +396,14 @@ function checkPw(){
     <!-- TOP PERFORMERS VISUAL -->
     <div class="section-label">What's Working</div>
     <h2 class="section-title">The Ads Carrying the Account</h2>
-    <p class="section-subtitle">Three statics and two videos make up the top five, plus HGS Static 13 as the smallest spend standout. Warm audiences, not format, are what separate this group from the rest of the account.</p>
+    <p class="section-subtitle">Three statics and two videos make up the top five. Warm audiences, not format, are what separate this group from the rest of the account.</p>
 
     <div class="creative-grid-3">
 
       <div class="creative-card winner">
         <div class="format-tag format-image">Static</div>
         <div class="rank-badge rank-gold">1</div>
-        <div class="creative-thumb-placeholder">Summer Essentials<br>DB Summer 3</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a6d/image.jpg" alt="Summer Essentials - DB Summer 3 (Static)" loading="lazy" /></div>
         <div class="creative-meta">
           <div class="creative-label">#1 &middot; Revenue Leader</div>
           <div class="metric-row three">
@@ -425,7 +422,7 @@ function checkPw(){
       <div class="creative-card winner">
         <div class="format-tag format-video">Video</div>
         <div class="rank-badge rank-silver">2</div>
-        <div class="creative-thumb-placeholder">Summer Essentials<br>Vid 3</div>
+        <div class="creative-thumb-media"><video src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d1/video.mp4" controls preload="metadata"></video></div>
         <div class="creative-meta">
           <div class="creative-label">#2 &middot; Best Return in the Top 5</div>
           <div class="metric-row three">
@@ -444,7 +441,7 @@ function checkPw(){
       <div class="creative-card winner">
         <div class="format-tag format-image">Static</div>
         <div class="rank-badge rank-bronze">3</div>
-        <div class="creative-thumb-placeholder">HGS Static 4</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a2c56d611237eecacf50ca2/image.jpg" alt="HGS Static 4" loading="lazy" /></div>
         <div class="creative-meta">
           <div class="creative-label">#3 &middot; Winner</div>
           <div class="metric-row three">
@@ -463,7 +460,7 @@ function checkPw(){
       <div class="creative-card winner">
         <div class="format-tag format-video">Video</div>
         <div class="rank-badge" style="background:var(--blue);color:#fff;">4</div>
-        <div class="creative-thumb-placeholder">Summer Essentials<br>Vid 1</div>
+        <div class="creative-thumb-media"><video src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec10a3ab5d13a5b5d2d4d4/video.mp4" controls preload="metadata"></video></div>
         <div class="creative-meta">
           <div class="creative-label">#4 &middot; Winner</div>
           <div class="metric-row three">
@@ -482,7 +479,7 @@ function checkPw(){
       <div class="creative-card winner">
         <div class="format-tag format-image">Static</div>
         <div class="rank-badge" style="background:var(--purple);color:#fff;">5</div>
-        <div class="creative-thumb-placeholder">Summer Essentials<br>DB Summer 1, Copy 2</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a74/image.jpg" alt="Summer Essentials - DB Summer 1 (Static) - Copy 2" loading="lazy" /></div>
         <div class="creative-meta">
           <div class="creative-label">#5 &middot; Winner</div>
           <div class="metric-row three">
@@ -495,25 +492,6 @@ function checkPw(){
             <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">70</div></div>
           </div>
           <span class="verdict-badge v-win">Winner</span>
-        </div>
-      </div>
-
-      <div class="creative-card winner">
-        <div class="format-tag format-image">Static</div>
-        <div class="rank-badge" style="background:var(--green);color:#000;">&#9733;</div>
-        <div class="creative-thumb-placeholder">HGS Static 13</div>
-        <div class="creative-meta">
-          <div class="creative-label">Efficiency Leader</div>
-          <div class="metric-row three">
-            <div class="metric-item"><div class="m-label">Return</div><div class="m-value green">16.16x</div></div>
-            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value green">$12.10</div></div>
-            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value green">1.09%</div></div>
-          </div>
-          <div class="metric-row">
-            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$448</div></div>
-            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">37</div></div>
-          </div>
-          <span class="verdict-badge v-scale">Best return per dollar, still under funded</span>
         </div>
       </div>
 
@@ -605,6 +583,107 @@ function checkPw(){
 
     <hr class="section-divider" />
 
+    <!-- BOTTOM 5 BY SPEND -->
+    <div class="section-label">Volume Check</div>
+    <h2 class="section-title">Bottom 5 by Spend</h2>
+    <p class="section-subtitle">Five creatives combined for $99.76 in spend this window, all under the $30 meaningful-spend threshold used above. None returned a purchase signal. Shown for visibility, not as a performance verdict.</p>
+
+    <div class="creative-grid-3">
+
+      <div class="creative-card">
+        <div class="format-tag format-image">Static</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a8db4acff2b8251ad8a9bc9/image.jpg" alt="EG | Cold | Made For Every Body" loading="lazy" /></div>
+        <div class="creative-meta">
+          <div class="creative-label">EG | Cold | Made For Every Body</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value">2.46%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$27</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">0</div></div>
+          </div>
+          <span class="verdict-badge v-neutral">No purchase signal</span>
+        </div>
+      </div>
+
+      <div class="creative-card">
+        <div class="format-tag format-image">Static</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a8dc2bdb2be2afd73c2c306/image.jpg" alt="EG | Cold | The Set That Actually Lasts" loading="lazy" /></div>
+        <div class="creative-meta">
+          <div class="creative-label">EG | Cold | The Set That Actually Lasts</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value">0.83%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$22</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">0</div></div>
+          </div>
+          <span class="verdict-badge v-neutral">No purchase signal</span>
+        </div>
+      </div>
+
+      <div class="creative-card">
+        <div class="format-tag format-image">Static</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a72/image.jpg" alt="Summer Essentials - DB Summer 7 (Static) - Copy" loading="lazy" /></div>
+        <div class="creative-meta">
+          <div class="creative-label">Summer Essentials - DB Summer 7 (Static) - Copy</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value">0.57%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$22</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">0</div></div>
+          </div>
+          <span class="verdict-badge v-neutral">No purchase signal</span>
+        </div>
+      </div>
+
+      <div class="creative-card">
+        <div class="format-tag format-image">Static</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/69ec0293ab5d13a5b5c73a6a/image.jpg" alt="Summer Essentials - DB Summer 9 (Static) - Copy" loading="lazy" /></div>
+        <div class="creative-meta">
+          <div class="creative-label">Summer Essentials - DB Summer 9 (Static) - Copy</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value">0.54%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$20</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">0</div></div>
+          </div>
+          <span class="verdict-badge v-neutral">No purchase signal</span>
+        </div>
+      </div>
+
+      <div class="creative-card">
+        <div class="format-tag format-image">Static</div>
+        <div class="creative-thumb-media"><img src="https://motionaccountassets.blob.core.windows.net/699cd13505b21dc3b69e8b1f/creativeassetfacebook/6a8dc2bdb2be2afd73c2c30c/image.jpg" alt="EG | Cold | Wont Fade Wont Pill" loading="lazy" /></div>
+        <div class="creative-meta">
+          <div class="creative-label">EG | Cold | Wont Fade Wont Pill</div>
+          <div class="metric-row three">
+            <div class="metric-item"><div class="m-label">Return</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CPA</div><div class="m-value">—</div></div>
+            <div class="metric-item"><div class="m-label">CTR</div><div class="m-value">0.50%</div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-item"><div class="m-label">Spend</div><div class="m-value">$9</div></div>
+            <div class="metric-item"><div class="m-label">Purchases</div><div class="m-value">0</div></div>
+          </div>
+          <span class="verdict-badge v-neutral">No purchase signal</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider" />
+
     <!-- WHAT'S WORKING, AND WHY -->
     <div class="section-label">Creative Analysis</div>
     <h2 class="section-title">What's Working, and Why</h2>
@@ -628,15 +707,6 @@ function checkPw(){
           Inside warm campaigns only, statics returned 13.39x and video returned 13.91x. Basically a tie. The account is winning because the message lands with people who already know BuffBunny, not because of a specific format.
         </div>
         <div class="insight-stat">Static 13.39x, video 13.91x, warm campaigns only</div>
-      </div>
-
-      <div class="insight-card">
-        <div class="insight-icon">&#128176;</div>
-        <div class="insight-title">HGS Static 13 could handle more budget</div>
-        <div class="insight-body">
-          16.16x over the full 14 days on just $448 in spend. This week alone it also had the strongest click-earned return of any ad above $150. Two separate reads say the same thing: give it more room.
-        </div>
-        <div class="insight-stat">16.16x over 14 days, 11.21x this week</div>
       </div>
 
     </div>
